@@ -1,0 +1,65 @@
+COMANDOS GENERALES-ARCH HYPRLAND
+## WIFI
+nmcli device wifi list
+nmcli device wifi connect "red_nombre" password "contra"
+
+## Sonido
+wpctl set-volume @DEFAULT_AUDIO_SINK@ 100%
+wpctl set-mute @DEFAULT_AUDIO_SINK@ 0
+
+## Brillo
+brightnessctl set 50%
+
+## Bateria
+cat /sys/class/power_supply/BAT0/uevent
+
+## Comandos instalados verificar
+~/.config/hypr/hyprland.conf
+
+## Cortar pantalla
+SUPER+f11
+
+
+## USB
+# Montar
+lsblk
+sudo mkdir -p /mnt/usb
+sudo mount /dev/sda1 /mnt/usb
+
+# Desmontar
+sudo umount /mnt/usb
+
+# Performance
+cp # copiar documento
+cp -r # copiar carpeta
+mv # renombrar
+rm # eliminar
+rm -r # carpeta
+
+## Libera RAM
+sync && echo 3 | sudo tee /proc/sys/vm/drop_caches
+
+## Fondo de pantalla
+
+## Git + GitHub en dos PCs
+# Configuración inicial (una sola vez por PC)
+git config --global user.name "Samuel"
+git config --global user.email "tu@email.com"
+git config --global credential.helper store   # guarda el token, no te lo vuelve a pedir
+
+# Clonar el repositorio (una sola vez por PC)
+cd ~
+git clone https://github.com/zammu026/fisica_computacional_2026.git 
+
+# Cuando pida contraseña → pegás el token de GitHub, no tu contraseña normal.
+# Flujo de trabajo diario
+# 1. SIEMPRE primero al abrir la PC
+git pull
+
+# 2. Trabajás normal en VS Code...
+code .
+
+# 3. Al terminar o querer guardar
+git add .
+git commit -m "descripción de qué hiciste"
+git push
