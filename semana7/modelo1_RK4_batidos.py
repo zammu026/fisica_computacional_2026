@@ -1,10 +1,10 @@
-#OSCILADOR ARMONICO NO LINEAL AMARTIGUADA FORZADA CON RK4
+#OSCILADOR ARMONICO NO LINEAL AMARTIGUADA FORZADA CON RK4, BATIDOS cuando wf es cercano a omega_0
 import numpy as np
 import matplotlib.pyplot as plt
 # parametros
 k = 1.0
 m = 1.0
-omega_0 = np.sqrt(k/m)
+omega_0 = 1.0
 
 mu = 0.001 #friccion viscosa
 F_drive = 1.0
@@ -40,9 +40,9 @@ def rk4(alpha, omega_f):
     return x, v
 
 # Graficar
-omega_f = 2.0 # frecuencia de la fuerza externa oscilatoria
+omega_f = 1.005 # frecuencia de la fuerza externa oscilatoria
 F_drive = 5.0 # amplitud de la fuerza de externa
-x_ml, v_ml = rk4(alpha=0.10, omega_f=omega_f)
+x_ml, v_ml = rk4(alpha=0.00, omega_f=omega_f)
 plt.plot(t_values, x_ml)
 plt.xlabel("Tiempo (s)")
 plt.ylabel("Posición (m)")
