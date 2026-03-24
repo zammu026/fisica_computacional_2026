@@ -1,0 +1,1 @@
+omega_list = np.linspace(omega_0/10, 10*omega_0, 40) # lista de frecuencias de la fuerza externa
