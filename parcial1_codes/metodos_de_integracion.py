@@ -39,10 +39,9 @@ f = lambda x: 2*x**4 + 3*x**3 + 4*x**2 - 5*x # f(x) = 2x^4 + 3x^3 + 4x^2 - 5x, d
 a, b = 0, 1
 n = 1000
 N = 100000
-N_gauss = 100 # puntos para la Cuadratura de Gauss, deben de ser pocos sino la memoria colapsa
+N_gauss = 10 # puntos para la Cuadratura de Gauss, deben de ser pocos sino la memoria colapsa
 
 print(f"Trapecio:   {trapecio(f, a, b, n):.16f}")
 print(f"Simpson:    {simpson(f, a, b, n):.16f}")
 print(f"Montecarlo: {montecarlo(f, a, b, N):.16f}")
 print(f"Gauss:      {integrar_gauss(f, a, b, N_gauss):.16f}")
-# print(f"Exacto:     {1/5 + 1/2:.6f}")  # integral exacta de 2x^4 + 3x^3 + 4x^2 - 5x entre 0 y 1
