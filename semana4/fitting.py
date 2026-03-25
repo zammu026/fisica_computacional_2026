@@ -39,14 +39,14 @@ A = array ([[ss, sx, sxx], [sx, sxx, sxxx], [sxx, sxxx, sxxxx]])
 bvec = array([sy, sxy, sxxy])
 
 # solve via matrix inverse
-xvec = multiply(inv(A), bvec)
+xvec = np.dot(inv(A), bvec)
 print('\n x via Inverse A \n', xvec, '\n')
 
 # solve via gaussian elimination
 xvec = solve(A, bvec)
 print('\n x via Elimination \n', xvec)
 print('\n Fit to Parabola \n')
-print('y(x) = a0 + a1 x + a2 x a la 2')
+print('y(x) = a0 + a1*x + a2*x^2')
 
 print('a0 = ', xvec[0])
 print('a1 = ', xvec[1])
@@ -56,7 +56,10 @@ print('a2 = ', xvec[2])
 xt = np.linspace(x[0], x[-1], 100)
 g = xvec[0] + xt* xvec[1] +  xvec[2]*(xt**2)
 
-plt.scatter(x,y)
-plt.plot(xt, g)
-plt.errorbar(x,y,sig)
+# plt.scatter(x,y, color='blue', label='Data Points')
+plt.plot(xt, g, color='red', label='Fitted Parabola')
+plt.errorbar(x,y,sig, color='blue', fmt='o', label='Error Bars')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.legend()    
 plt.show()

@@ -40,7 +40,7 @@ A = array ([[ss, sx], [sx, sxx]])
 bvec = array([sy, sxy])
 
 # solve via matrix inverse
-xvec = multiply(inv(A), bvec)
+xvec = np.dot(inv(A), bvec)
 print('\n x via Inverse A \n', xvec, '\n')
 
 # solve via gaussian elimination
@@ -57,12 +57,18 @@ print('a1 = ', xvec[1])
 xt = np.linspace(x[0], x[-1], 100)
 g = xvec[0] + xt* xvec[1] 
 
-plt.scatter(x,y)
-plt.plot(xt, g)
-plt.errorbar(x,y,sig)
-plt.show()
-#-----------------------------------------------------------
+# Calcular chi2
+y_fit = xvec[0] + xvec[1]*x
 
-for i in range(0, Nd):
-    chi = (g[i]-xt[i])**2/(sig2[i])**2
-print('El chi cuadrado es ', chi)
+chi2 = np.sum(((y - y_fit) / sig)**2)
+dof = Nd - 2
+chi2_red = chi2 / dof
+print("chi2 =", chi2)
+print("chi2/dof =", chi2_red)
+
+# Grafica
+plt.scatter(x, y, color='blue', label='Datos')
+plt.errorbar(x, y, sig, fmt='none', ecolor='blue', capsize=3, label='Errores')
+plt.plot(xt, g, color='red', label='Ajuste Lineal')
+plt.legend()
+plt.show()
