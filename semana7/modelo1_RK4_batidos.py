@@ -57,5 +57,3 @@ plt.ylabel("Velocidad (m/s)")
 plt.title("Oscilador Armónico No Lineal Amortiguada Forzada con RK4, batidos wf approx w0")
 plt.grid()
 plt.show()
-
-# Batidos wf  aprox omega_0
