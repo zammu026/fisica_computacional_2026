@@ -1,3 +1,4 @@
+# RK4 sin arrays
 import numpy as np
 def rk4Algor(t,h,N,y,f):
 	k1 = np.zeros(N)
