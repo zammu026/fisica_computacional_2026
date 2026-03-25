@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def f(x,t):
-	return -x**3 + np.sin(t)
+	return -x**3 + np.sin(t) # funcion a integrar f(x,t) = dx/dt = -x^3 + sin(t)
 #Intervalo
 a = 0.0
 b = 10.0

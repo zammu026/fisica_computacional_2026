@@ -1,3 +1,8 @@
+# Este código resuelve un sistema de ecuaciones diferenciales ordinarias (EDO) utilizando el método de Runge-Kutta de cuarto orden (RK4).
+# Define una función vectorial f(r, t) que representa el sistema de EDO.
+# Integra numéricamente desde t=0 hasta t=10 con condiciones iniciales r=[1.0, 1.0].
+# Grafica las soluciones x(t) y y(t) en función del tiempo t.
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -31,7 +36,3 @@ plt.plot(tpoints, ypoints, label="y(t)")
 plt.xlabel("t")
 plt.legend()
 plt.show()
-
-for i in range(5):
-    print(i)
-

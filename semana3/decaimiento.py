@@ -1,3 +1,8 @@
+# Este código simula el decaimiento radiactivo de Estroncio-90 (Sr-90) a Itrio-90 (Y-90).
+# Utiliza el método de Runge-Kutta de cuarto orden (RK4) para resolver el sistema de ecuaciones diferenciales
+# que describen la evolución temporal del número de átomos de Sr y Y.
+# Calcula la actividad del Sr-90 y la grafica en escala logarítmica en función del tiempo.
+
 import numpy as np
 import matplotlib.pyplot as plt
 from Rk4_ import rk4
@@ -13,7 +18,7 @@ lambda_I = np.log(2) / T_Y
 def f(t, y):
 	N_Sr, N_Y = y
 	dN_Sr = -lambda_Sr* N_Sr
-	dN_Y = lambda_Sr * N_Sr - lambda_Y * N_Y
+	dN_Y = lambda_Sr * N_Sr - lambda_I * N_Y
 	return np.array([dN_Sr, dN_Y])
 
 # intervalo temporal
@@ -41,4 +46,3 @@ plt.xlabel("Tiempo (dias)")
 plt.ylabel("Actividad relativa de $^{90}$Sr")
 plt.grid()
 plt.show()
-

@@ -26,7 +26,7 @@ def integral_total(f):
 val, err = integral_infinita(lambda x: np.exp(-x))
 print(f"∫₀^∞ e^(-x) dx        = {val:.6f}  (error ≈ {err:.2e})(esperado: 1.000000)")
 # METODOS DE INTEGRACION NUMERICA:
-# Trapecio, Simpson, Romberg, Gauss-Legendre, etc.
+# Trapecio, Simpson, Romberg, Gauss-Legendre and Monte Carlo.
 
 # ∫₂^∞ e^(-x) dx = e^(-2)
 val, err = integral_desde_a(lambda x: np.exp(-x), a=2)
