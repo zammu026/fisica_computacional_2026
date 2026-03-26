@@ -79,4 +79,4 @@ for i in range(0, N):
 FFT(N, isign)
 print('\n Fourier Transform \n i Re Im ')
 for i in range(0, N):
-    print('%2d %9.5f %9.5' %(i, dtr[i, 0], dtr[i, 1]))
+    print('%2d %9.5f %9.5f' %(i, dtr[i, 0], dtr[i, 1]))
