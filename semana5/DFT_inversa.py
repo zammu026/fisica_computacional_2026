@@ -1,3 +1,5 @@
+# Algoritmo de Transformada de Fourier Discreta (DFT) para Análisis Espectral 
+# y Reconstrucción de la Señal Original mediante la Transformada Inversa (IDFT)
 import numpy as np
 from numpy import zeros
 from cmath import exp, pi
@@ -51,7 +53,7 @@ y_reconstructed = idft(c2)
 # Plotting
 # plt.figure(figsize=(12, 5))
 
-plt.plot(1, 2, 1)
+plt.subplot(1, 2, 1)
 # Plot only the positive frequencies for comparison
 n_freq = len(c2)
 f_positive = f[:n_freq]
@@ -65,7 +67,7 @@ plt.legend()
 plt.title('DFT Comparison')
 plt.show()
 
-plt.plot(1, 2, 2)
+plt.subplot(1, 2, 2)
 plt.plot(t, y, label='Original Signal')
 plt.plot(t, np.abs(y_reconstructed), label='Reconstructed Signal', linestyle='--')
 plt.xlabel('Tiempo (s)')
