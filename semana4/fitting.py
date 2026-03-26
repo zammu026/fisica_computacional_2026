@@ -1,3 +1,4 @@
+# Fitting a parabola to data with errors 
 import pylab as p
 import numpy as np
 from numpy import *
@@ -56,7 +57,7 @@ print('a2 = ', xvec[2])
 xt = np.linspace(x[0], x[-1], 100)
 g = xvec[0] + xt* xvec[1] +  xvec[2]*(xt**2)
 
-# plt.scatter(x,y, color='blue', label='Data Points')
+plt.scatter(x,y, color='blue', label='Data Points')
 plt.plot(xt, g, color='red', label='Fitted Parabola')
 plt.errorbar(x,y,sig, color='blue', fmt='o', label='Error Bars')
 plt.xlabel('x')
