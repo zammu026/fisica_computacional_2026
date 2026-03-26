@@ -1,25 +1,28 @@
 import math
-x0 = 1.111; dx = 3.e-4; eps = 0.002; Nmax = 100;
+from scipy.constants import h, c, k, Wien
+from newtonrapson import NewtonR
+
+# Parámetros solicitados
+x0 = 5            # Valor inicial cercano a la raíz no trivial (~4.96)
+dx_num = 3.e-4       # Diferencial para la derivada numérica
+eps = 1e-6           # Precisión de 10^-6
+Nmax = 100
+
 def f(x):
-    return 5*math.exp(-x) + x - 5
+    # Ecuación trascendente de Wien: 5*exp(-x) + x - 5 = 0
+    return 5 * math.exp(-x) + x - 5
 
-def NewtonR(x, dx, eps, Nmax):
-    for it in range(0, Nmax + 1):
-        F = f(x)
-        if (abs(F) <= eps):
-            print("\n Root found, f(root) =", F, ", eps =", eps)
-            break
-        print("Interation  =", it, "x = ", x, "f(x) =", F)
+x_sol = NewtonR(x0, dx_num, eps, Nmax)
 
-        df = (f(x + dx/2) - f(x - dx/2))/dx
-        dx = -F/dx
-        x += dx
+# 2. Calcular la constante de Wien teórica (b = hc / xk)
+# Comparamos con la constante b directa de scipy (Wien)
+b_calculada = (h * c) / (x_sol * k)
+print(f"Constante de Wien calculada: {b_calculada:.8e} m·K")
+print(f"Constante de Wien (SciPy):    {Wien:.8e} m·K")
 
-        if it == Nmax + 1:
-            print("\n Newton Failed for Nmax =", Nmax)
-    return x
+# 3. Temperatura del Sol (usando lambda_max aprox de 502 nm)
+lambda_sol = 502e-9 
+T_sol = b_calculada / lambda_sol
 
-NewtonR(x0, dx, eps, Nmax)
-# definir un f(x)
-# Poner la temperatura del sol
-# precision 10 a la -6
+print(f"\n--- Resultado Final ---")
+print(f"Temperatura estimada del Sol: {T_sol:.2f} K")

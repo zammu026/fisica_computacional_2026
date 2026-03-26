@@ -26,5 +26,5 @@ raiz1 = newton_raphson(x_start=0.5)
 # 2. Buscamos la raíz cerca de 5 (Valor inicial: 10 o 5)
 raiz2 = newton_raphson(x_start=10.0)
 
-print(f"✅ Raíz 1 encontrada: {raiz1:.8f}")
-print(f"✅ Raíz 2 encontrada: {raiz2:.8f}")
+print(f"Raíz 1 encontrada: {raiz1:.8f}")
+print(f"Raíz 2 encontrada: {raiz2:.8f}")
