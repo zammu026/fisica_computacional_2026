@@ -44,6 +44,5 @@ plt.title('Espacio de Fase')
 plt.xlabel('Posición (x)')
 plt.ylabel('Velocidad (v)')
 plt.grid(True)
-
 plt.tight_layout()
 plt.show()
