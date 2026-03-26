@@ -1,4 +1,6 @@
 ## Algoritmo de DFT
+# Suma total de todas las coincidencias entre tu señal y(x), x = tiempo
+# y una onda de referencia de frecuencia k
 import numpy as np
 from cmath import exp, pi
 
@@ -29,3 +31,4 @@ print("DFT computed successfully")
 print(f"Amplitud en n=1 (30*cos): {abs(Y_result[1]) / (N/2):.1f}")
 print(f"Amplitud en n=2 (60*sin): {abs(Y_result[2]) / (N/2):.1f}")
 print(f"Amplitud en n=3 (120*sin): {abs(Y_result[3]) / (N/2):.1f}")
+print("First few coefficients:\n", Y_result[:3])

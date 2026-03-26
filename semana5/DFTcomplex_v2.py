@@ -1,3 +1,4 @@
+# Cuánto aporta cada "armónico" a la señal total, mira que esta normalizada
 from numpy import *
 import cmath
 
@@ -18,10 +19,10 @@ def DFT(y):
         zsum = complex(0.0, 0.0)
         for k in range(N):
             zsum += y[k] * exp(-1j * twopi * k * n / N)
-        Y[n] = zsum
+        Y[n] = zsum/N
     return Y
 
 # Test the function
 Y_result = DFT(y)
 print("DFT computed successfully")
-print("First few coefficients:", Y_result[:5])
+print("First few coefficients:\n", Y_result[:3])
