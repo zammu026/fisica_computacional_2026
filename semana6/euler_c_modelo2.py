@@ -1,3 +1,4 @@
+# implementacion del método de Euler Cromer para simular un oscilador no lineal
 import numpy as np
 import matplotlib.pyplot as plt
 # parametros
@@ -32,9 +33,15 @@ for i in range(N-1):
     v[i+1] = v[i] + h*fv(x[i])
     x[i+1] = x[i] + h*fx(v[i+1])
 
-plt.plot(t_values, x)
-plt.plot(t_values, v)
+plt.plot(t_values, x, label='x(t)')
+plt.plot(t_values, v, label='v(t)')
+plt.xlabel('t')
+plt.ylabel('x, v')
+plt.legend()
 plt.show()
 
-plt.plot(x, v)
+plt.plot(x, v, label='Phase Space')
+plt.xlabel('x')
+plt.ylabel('v')
+plt.legend()
 plt.show()
