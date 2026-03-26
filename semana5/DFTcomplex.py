@@ -6,16 +6,14 @@ from cmath import exp, pi
 N = 100  # number of points
 
 # Crear señal de ejemplo
-x = np.linspace(0, 2*np.pi, N)
+x = np.linspace(0, 2*np.pi, N, endpoint=False)
 y = 30*np.cos(x) + 60*np.sin(2*x) + 120*np.sin(3*x)
-
-# Array para la transformada
-Ycomplex = np.zeros(N, complex)
 
 def Signal(y):
     """Compute DFT and return complex Y"""
     N = len(y)
     Y = np.zeros(N, complex)
+    # n representa la frecuencia y k representa el tiempo
     for n in range(N):
         for k in range(N):
             Y[n] += y[k] * exp(-1j * 2 * pi * k * n / N)
@@ -28,4 +26,6 @@ def DFT(Ycomplex):
 # Call functions
 Y_result = Signal(y)
 print("DFT computed successfully")
-print("First few coefficients:", Y_result[:5])
+print(f"Amplitud en n=1 (30*cos): {abs(Y_result[1]) / (N/2):.1f}")
+print(f"Amplitud en n=2 (60*sin): {abs(Y_result[2]) / (N/2):.1f}")
+print(f"Amplitud en n=3 (120*sin): {abs(Y_result[3]) / (N/2):.1f}")

@@ -1,12 +1,13 @@
+import numpy as np
 from numpy import zeros
 from cmath import exp, pi
-import matplotlib
-matplotlib.use('Agg')  # Non-interactive backend
+#import matplotlib
+#matplotlib.use('Agg')  # Non-interactive backend
 import matplotlib.pyplot as plt
-import numpy as np
 
 def dft(y):
     N = len(y)
+    # para señales reales, solo necesitamos calcular la mitad de los coeficientes
     c = zeros(N//2 + 1, complex)
 
     for k in range(N//2 + 1):
@@ -15,14 +16,17 @@ def dft(y):
     return c
 
 def idft(c):
-    N = (len(c) - 1)*2
+    # N original basado en la longitud de c (asumiendo señal real)
+    N = (len(c) - 1) * 2
     y = zeros(N, complex)
-
     for n in range(N):
-        for k in range(N//2 + 1):
-            y[n] += c[k] * exp(2j*pi*k*n/N)
-        for k in range(1, N//2):
-            y[n] += c[k].conjugate()*exp(-2j*pi*k*n/N)
+        # Componente DC
+        y[n] += c[0]
+        # Componentes intermedias (se multiplican por 2 para compensar la mitad faltante)
+        for k in range(1, N // 2):
+            y[n] += 2 * (c[k] * exp(2j * pi * k * n / N)).real
+        # Componente Nyquist
+        y[n] += c[N // 2] * exp(2j * pi * (N // 2) * n / N)
         y[n] /= N
     return y
 
@@ -35,7 +39,7 @@ t = np.linspace(0, 1, N)
 y = np.sin(2*np.pi*5*t) + 0.5*np.cos(2*np.pi*20*t)
 
 # Apply DFT
-c1 = np.fft.fft(y)
+c1 = np.fft.rfft(y)
 c2 = dft(y)
 
 # Frequencies
@@ -45,9 +49,9 @@ f = np.fft.fftfreq(N, t[1] - t[0])
 y_reconstructed = idft(c2)
 
 # Plotting
-plt.figure(figsize=(12, 5))
+# plt.figure(figsize=(12, 5))
 
-plt.subplot(1, 2, 1)
+plt.plot(1, 2, 1)
 # Plot only the positive frequencies for comparison
 n_freq = len(c2)
 f_positive = f[:n_freq]
@@ -61,7 +65,7 @@ plt.legend()
 plt.title('DFT Comparison')
 plt.show()
 
-plt.subplot(1, 2, 2)
+plt.plot(1, 2, 2)
 plt.plot(t, y, label='Original Signal')
 plt.plot(t, np.abs(y_reconstructed), label='Reconstructed Signal', linestyle='--')
 plt.xlabel('Tiempo (s)')
