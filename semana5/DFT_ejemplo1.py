@@ -1,7 +1,7 @@
 from DFT import dft
 import numpy as np
 # import matplotlib
-# matplotlib.use('Agg')
+# matplotlib.use('Agg') # Use 'Agg' backend for non-interactive plotting, but this is not needed if we want to display the plot interactively
 import matplotlib.pyplot as plt
 
 # n de puntos
