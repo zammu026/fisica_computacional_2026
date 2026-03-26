@@ -39,7 +39,7 @@ def FFT(N, isign):
     print('\n Bit-Reversed Input Data ')
 
     for i in range(1, n+1, 2):
-        print('%2d data[%2d] %9.5f' % (i, data[i]))
+        print('%2d data[%2d] = %9.5f' % (i//2, i, data[i]))
     nmax = 2
     while (nmax < n):
         istep = 2*nmax
