@@ -1,0 +1,1 @@
+# ecuacion de onda genralizada

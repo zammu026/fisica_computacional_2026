@@ -1,14 +1,24 @@
 """
 =============================================================
-Práctica Numérica 2: Dispersión de partícula por un potencial bidimensional
+Práctica Numérica 2 - Física Computacional
+Universidad de El Salvador
+Dispersión de partícula por un potencial bidimensional
 =============================================================
+
+Potencial:  V(x, y) = ± x² y² e^(-(x²+y²))
+
+Los signos:
+  + → potencial repulsivo
+  - → potencial atractivo
 """
 
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D   # necesario para gráfica 3D
 
+# ==============================================================
 # PARÁMETROS GLOBALES
-
+# ==============================================================
 MASA = 0.5        # masa de la partícula
 SIGNO = +1        # +1 = repulsivo,  -1 = atractivo
 VX0  = 0.5        # velocidad inicial en x  (la partícula viene en x)
@@ -18,10 +28,26 @@ TMAX = 200.0      # tiempo máximo de simulación
 TOLERANCIA = 1e-6 # relación PE/KE para decidir si está fuera de la región
 
 
+# ==============================================================
 # (a) POTENCIAL  V(x, y)
+# ==============================================================
 def potencial(x, y, signo=SIGNO):
+    """
+    Calcula el potencial en el punto (x, y).
+    V(x,y) = signo * x² * y² * exp(-(x²+y²))
+    """
     return signo * x**2 * y**2 * np.exp(-(x**2 + y**2))
 
+
+# ==============================================================
+# (b) FUERZAS  (negativo del gradiente del potencial)
+#
+#  Fx = -∂V/∂x = ∓ 2xy²(1 - x²) e^(-(x²+y²))
+#  Fy = -∂V/∂y = ∓ 2x²y(1 - y²) e^(-(x²+y²))
+#
+# (el signo "∓" significa que si signo=+1 en V, la fuerza lleva -,
+#  y si signo=-1 en V, la fuerza lleva +)
+# ==============================================================
 def fuerza_x(x, y, signo=SIGNO):
     """Componente x de la fuerza: Fx = -∂V/∂x"""
     return -signo * 2 * x * y**2 * (1 - x**2) * np.exp(-(x**2 + y**2))
@@ -30,6 +56,19 @@ def fuerza_y(x, y, signo=SIGNO):
     """Componente y de la fuerza: Fy = -∂V/∂y"""
     return -signo * 2 * x**2 * y * (1 - y**2) * np.exp(-(x**2 + y**2))
 
+
+# ==============================================================
+# (d) MÉTODO RUNGE-KUTTA DE 4° ORDEN (RK4)
+#
+# El estado del sistema es el vector:
+#   estado = [x, y, vx, vy]
+#
+# Las ecuaciones de movimiento son:
+#   dx/dt  = vx
+#   dy/dt  = vy
+#   dvx/dt = Fx / m
+#   dvy/dt = Fy / m
+# ==============================================================
 def derivadas(estado, signo=SIGNO):
     """
     Calcula las derivadas del estado en un instante.
@@ -51,10 +90,10 @@ def paso_rk4(estado, dt, signo=SIGNO):
     Avanza un paso dt usando RK4.
     Devuelve el nuevo estado.
     """
-    k1 = derivadas(estado,          signo)
+    k1 = derivadas(estado,           signo)
     k2 = derivadas(estado + dt/2*k1, signo)
     k3 = derivadas(estado + dt/2*k2, signo)
-    k4 = derivadas(estado + dt*k3,  signo)
+    k4 = derivadas(estado + dt*k3,   signo)
 
     nuevo_estado = estado + (dt/6) * (k1 + 2*k2 + 2*k3 + k4)
     return nuevo_estado
@@ -198,9 +237,9 @@ def graficar_potencial():
     ax3.set_zlabel('V(x,y)')
 
     plt.tight_layout()
-    plt.savefig('potencial.png', dpi=150)
+    plt.savefig('potencial_v1.png', dpi=150)
     plt.show()
-    print("Guardado: potencial.png")
+    print("Guardado: potencial_v1.png")
 
 
 def graficar_trayectorias():
@@ -233,9 +272,9 @@ def graficar_trayectorias():
     ax.set_aspect('equal')
 
     plt.tight_layout()
-    plt.savefig('trayectorias.png', dpi=150)
+    plt.savefig('trayectorias_v1.png', dpi=150)
     plt.show()
-    print("Guardado: trayectorias.png")
+    print("Guardado: trayectorias_v1.png")
 
 
 def graficar_espacio_de_fases():
@@ -261,9 +300,9 @@ def graficar_espacio_de_fases():
     ax2.legend(fontsize=8)
 
     plt.tight_layout()
-    plt.savefig('espacio_de_fases.png', dpi=150)
+    plt.savefig('espacio_de_fases_v1.png', dpi=150)
     plt.show()
-    print("Guardado: espacio_de_fases.png")
+    print("Guardado: espacio_de_fases_v1.png")
 
 
 def graficar_angulo_dispersion():
@@ -287,9 +326,9 @@ def graficar_angulo_dispersion():
     ax.grid(True, alpha=0.3)
 
     plt.tight_layout()
-    plt.savefig('angulo_dispersion.png', dpi=150)
+    plt.savefig('angulo_dispersion_v1.png', dpi=150)
     plt.show()
-    print("Guardado: angulo_dispersion.png")
+    print("Guardado: angulo_dispersion_v1.png")
 
 
 def graficar_retardo_temporal():
@@ -322,9 +361,9 @@ def graficar_retardo_temporal():
     ax.grid(True, which='both', alpha=0.3)
 
     plt.tight_layout()
-    plt.savefig('retardo_temporal.png', dpi=150)
+    plt.savefig('retardo_temporal_v1.png', dpi=150)
     plt.show()
-    print("Guardado: retardo_temporal.png")
+    print("Guardado: retardo_temporal_v1.png")
 
 
 # ==============================================================
