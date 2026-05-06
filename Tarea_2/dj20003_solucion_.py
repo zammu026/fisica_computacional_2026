@@ -5,7 +5,7 @@ Práctica Numérica 2
 
 Potencial bidimensional:
     V(x,y) = s * x^2 * y^2 * e^{-(x^2+y^2)}
-donde s = +1 (repulsivo) o s = -1 (atractivo).
+donde s = +1 (repulsivo) o s = -1 (atractivo)
 r"""
 
 import numpy as np
@@ -33,13 +33,15 @@ B_VALS = np.arange(-1.0, 1.05, 0.05)
 def V(x, y, s):
     r"""
     (a)  V(x,y) = s \cdot x^2 y^2 \, e^{-(x^2+y^2)}
-    El factor exponencial confinante hace que V \to 0 para r \to \infty.
+    El factor exponencial confinante hace que V \to 0 para r \to \infty
     r"""
     return s * x**2 * y**2 * np.exp(-(x**2 + y**2))
 
 
 def gauss(x, y):
-    r"""Factor gaussiano e^{-(x^2+y^2)}, reutilizado en Fx y Fy.r"""
+    r"""
+    Factor gaussiano e^{-(x^2+y^2)}, reutilizado en Fx y Fy 
+    r"""
     return np.exp(-(x**2 + y**2))
 
 
@@ -62,9 +64,7 @@ def Fy(x, y, s):
     return -s * 2.0 * x**2 * y * (1.0 - y**2) * gauss(x, y)
 
 
-# ─────────────────────────────────────────────
-#  INTEGRADOR: RK4
-# ─────────────────────────────────────────────
+#  RK4
 
 def derivadas(q, s):
     r"""
@@ -97,16 +97,14 @@ def rk4_step(q, dt, s):
 
     Error local O(dt^5), error global O(dt^4).
     r"""
-    k1 = derivadas(q,              s)
+    k1 = derivadas(q,             s)
     k2 = derivadas(q + dt/2 * k1, s)
     k3 = derivadas(q + dt/2 * k2, s)
     k4 = derivadas(q + dt   * k3, s)
     return q + (dt / 6.0) * (k1 + 2*k2 + 2*k3 + k4)
 
 
-# ─────────────────────────────────────────────
-#  CONDICIÓN INICIAL EN x
-# ─────────────────────────────────────────────
+#  Condicion inicial en x
 
 def x_inicial(b, s):
     r"""
@@ -124,9 +122,7 @@ def x_inicial(b, s):
     return x0
 
 
-# ─────────────────────────────────────────────
-#  SIMULACIÓN DE UNA TRAYECTORIA
-# ─────────────────────────────────────────────
+# Simulacion de una trayectoria
 
 def simular(b, s, dt=DT, tmax=TMAX):
     r"""
@@ -178,9 +174,7 @@ def simular(b, s, dt=DT, tmax=TMAX):
     return xs, ys, vxs, vys, theta, t_sal
 
 
-# ─────────────────────────────────────────────
-#  CÁLCULO MASIVO PARA AMBOS SIGNOS
-# ─────────────────────────────────────────────
+#  Calculos para ambos signos
 
 def calcular_todo():
     r"""
@@ -210,9 +204,7 @@ def calcular_todo():
     return resultados
 
 
-# ─────────────────────────────────────────────
-#  VERIFICACIÓN ANALÍTICA DE LOS MÁXIMOS  (inciso c)
-# ─────────────────────────────────────────────
+# verificacion analitica de los maximos (inciso c)
 
 def verificar_maximos():
     r"""
@@ -479,7 +471,7 @@ if __name__ == "__main__":
     graficar_retardo_temporal(resultados)
 
     print("\n" + "="*58)
-    print("  Listo! Archivos PNG generados:")
+    print("  Archivos PNG generados:")
     for f in ["potencial.png", "trayectorias.png",
               "espacio_de_fases.png", "angulo_dispersion.png",
               "retardo_temporal.png"]:
