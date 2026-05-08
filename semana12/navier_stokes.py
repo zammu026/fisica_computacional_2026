@@ -103,3 +103,18 @@ for it in range(max_iter):
     if residual < tol:
         print("Convergencia alcanzada")
         break
+
+# visualizacion
+
+vx = np.zeros_like(u)
+vy = np.zeros_like(u)
+
+vx[:, 1: -1] = (u[:, 2:] - u[:, :-2]) / 2
+vy[1: -1, :] = -(u[2:, :] - u[: -2, :]) / 2
+
+X, Y = np.meshgrid(np.arange(Nx), np.arange(Ny))
+plt.figure(figsize=)
+
+# campos vectoriales
+
+# lineas de corriente
