@@ -5,7 +5,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-from
+from mpl_toolkits.mplot3d import Axes3D
 
 N = 100
 delta = 1.0
