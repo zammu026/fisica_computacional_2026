@@ -63,3 +63,7 @@ code .
 git add .
 git commit -m "descripción de qué hiciste"
 git push
+
+
+# Elimina una ventana
+tecla especial (Alt o SUPER) + c
