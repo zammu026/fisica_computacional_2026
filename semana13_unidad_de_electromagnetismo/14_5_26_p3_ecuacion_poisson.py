@@ -106,7 +106,7 @@ plt.title("Contornos equipotenciales")
 
 plt.show()
 
-# distribucion de carga
+# distribucion de carga (Falta revisar)
 plt.figure(figsize=(10, 7))
 ax = fig.add_subplot(111, projection = "3d")
 
