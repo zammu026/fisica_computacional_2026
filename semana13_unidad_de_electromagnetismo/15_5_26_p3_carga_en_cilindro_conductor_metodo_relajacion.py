@@ -1,14 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-
-from scipy 
 
 # Parametros
 epsilon0 = 8.854e-12
 
-a = 20.0
-L = 20.0
+a = 20.0 # radio
+L = 20.0 # longitud
 
 # parametros numericos
 Nr = 80
