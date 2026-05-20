@@ -82,6 +82,6 @@ def potencial(rho, phi, z):
         termino = (angular + J1 * J2 * sh1 * sh2 / denom)
 
         # toma de parte real
-        # FALTAAAA
+        # FALTAAAA SE ENCUENTRA EN EL LIBRO DE LANDAU
 
         
