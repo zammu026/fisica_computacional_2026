@@ -1,0 +1,1037 @@
+% ============================================================
+%  Protocolo de Investigación - Formato APA 7
+% ============================================================
+\documentclass[12pt, a4paper]{article}
+
+% --- Paquetes de Idioma y Fuentes ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel} % Corregido: es-table
+\usepackage{times}
+\usepackage{csquotes} % Quitada la opción =automatic
+
+% --- Márgenes APA ---
+\usepackage[top=2.54cm, bottom=2.54cm, left=2.54cm, right=2.54cm]{geometry}
+
+% --- Interlineado y Sangría ---
+\usepackage{setspace}
+\doublespacing
+\usepackage{indentfirst}
+\setlength{\parindent}{0.5in}
+\setlength{\parskip}{0pt}
+
+% --- Paquetes Matemáticos y Gráficos ---
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+
+% --- Referencias Bibliográficas ---
+\usepackage[style=apa, backend=biber, natbib=true]{biblatex}
+% Asegúrate de tener el archivo "references.bib" en la misma carpeta
+\addbibresource{references.bib}
+\usepackage{xurl}
+
+% --- Encabezado ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[R]{\thepage}
+\setlength{\headheight}{15pt}
+
+% --- Formato de Títulos APA 7 ---
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\normalsize\bfseries\centering}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{12pt}{12pt}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{12pt}{12pt}
+
+\setcounter{secnumdepth}{0}
+
+% --- Hipervínculos ---
+\usepackage[unicode, hidelinks]{hyperref}
+\usepackage{verbatim}
+\usepackage{microtype} % Ajustes invisibles de espaciado
+\emergencystretch=1em  % Permite un tercer pase de compilación para evitar que el texto se salga
+\hfuzz=2pt             % Ignora excesos menores a 0.7mm (quita los avisos pequeños)
+
+\begin{document}
+	\pagenumbering{alph}
+	% --- PÁGINA DE TÍTULO ---
+	\begin{titlepage}
+		\begin{center}
+			\vspace*{0.5cm}
+			{\large\bfseries 
+				Universidad de El Salvador\\
+				Facultad de Ciencias Naturales y Matemáticas\\
+				Escuela de Física}
+			
+			\vspace{1.5cm}
+			
+			% Si falla, asegúrate de que LOGO.png esté en la carpeta.
+			\includegraphics[width=0.4\linewidth]{descarga.jpeg}
+			
+			\vspace{2cm}
+			
+			{\large\bfseries 
+				Protocolo IV: Metodolog\'ia y resultados esperados\\
+				Caracterización óptica de urediniosporas de \textit{Hemileia vastatrix} y su aplicación en la detección de roya del cafeto en \textit{Coffea arabica}
+			}
+			
+			\vspace{2cm}
+			
+			Samuel de Jesús De la O Jiménez\\
+			\vspace{0.5cm}
+			PIN1109: Proyecto de Investigación\\
+			\vspace{0.5cm}
+			Dr. Rafael Antonio Gómez Escoto\\
+			\vspace{0.5cm}
+			\today
+		\end{center}
+	\end{titlepage}
+	\pagenumbering{arabic}
+	
+	\tableofcontents
+	\newpage
+	
+	\section{Idea de Investigación}
+	\phantomsection
+	\subsection{Antecedentes}
+	
+	La roya del cafeto, causada por el hongo biotrófico \textit{Hemileia vastatrix}, constituye la enfermedad foliar más destructiva del cultivo de \textit{Coffea arabica} a escala mundial. Su distribución abarca todas las regiones productoras de café comprendidas entre los trópicos de Cáncer y Capricornio, desde África Oriental —donde fue descrita por primera vez en Tanzania en 1869— hasta América Central, América del Sur, el Caribe y partes de Asia y Oceanía \parencite{Talhinhas2017}. La epidemia regional de 2012–2013 en Centroamérica y México ilustra la magnitud del problema: se estimaron pérdidas económicas superiores a USD 3,200 millones y la afectación directa de más de 1.7 millones de trabajadores agrícolas \parencite{Avelino2015}.
+	
+	Las urediniosporas —estructuras de reproducción asexual del hongo— son partículas unicelulares de 15–35 µm de diámetro, con pared delgada y coloración amarillo-naranja característica debida a pigmentos carotenoides \parencite{Talhinhas2017}. Estas esporas se liberan desde pústulas en la superficie abaxial de las hojas infectadas y constituyen la principal forma de dispersión del patógeno, pudiendo germinar en 2–4 horas bajo condiciones de alta humedad relativa (>85\%) y generar nuevas infecciones en la misma temporada \parencite{Silva2006}.
+	
+	El diagnóstico actual de la roya se basa en la inspección visual de lesiones cloróticas en el haz y pústulas esporulantes en el envés. No obstante, este proceso se complejiza ante la presencia de otras fitopatologías foliares como la mancha de hierro (\textit{Cercospora coffeicola}), el ojo de gallo (\textit{Mycena citricolor}) o la antracnosis (\textit{Colletotrichum} spp.), las cuales presentan síntomas necróticos que pueden confundirse con estadios avanzados de infección por roya \parencite{Silva2006}. La diferenciación crítica en campo radica en la capacidad de aislar visualmente el polvillo epifítico de urediniosporas, un signo ausente en las demás enfermedades mencionadas. Esta dependencia de personal altamente entrenado y el hecho de que los síntomas solo sean visibles entre 14 y 21 días post-inoculación \parencite{Talhinhas2017} limitan la capacidad de respuesta temprana.
+	
+	La espectroscopía de reflectancia se ha utilizado exitosamente para detectar estrés biótico y abiótico en cultivos mediante el análisis de cambios en la reflectancia foliar asociados a alteraciones en pigmentos fotosintéticos, contenido de agua y estructura celular \parencite{Mahlein2016, Gold2020}. Los trabajos pioneros de Graeff et al. \parencite{Graeff2006} demostraron la viabilidad de detectar \textit{Erysiphe graminis} (oídio del trigo) mediante espectroscopía antes de la aparición de síntomas visuales, utilizando cambios espectrales en la región 530–570 nm.
+	
+	
+	\subsection{Justificación}
+	
+	A pesar del potencial demostrado de la espectroscopía de reflectancia para la detección temprana de enfermedades foliares en diversos cultivos mediante el análisis de cambios en pigmentos fotosintéticos, contenido de agua y estructura celular \parencite{Mahlein2016, Gold2020}, no existe en la literatura científica ninguna caracterización experimental del espectro óptico de las urediniosporas de \textit{H. vastatrix} ni un análisis sistemático de la firma espectral diferencial entre hojas de \textit{C. arabica} sanas e infectadas en distintos estadios de infección. Esta ausencia constituye una brecha fundamental en el conocimiento que impide el desarrollo de métodos espectroscópicos cuantitativos para la detección temprana de la roya del cafeto. El color amarillo-naranja característico de las urediniosporas, atribuible a pigmentos carotenoides como la $\beta$-caroteno y la astaxantina \parencite{Britton1995}, sugiere que estos organismos poseen una firma espectral distintiva en el rango visible (400–700 nm) que podría ser cuantificable mediante espectroscopía de reflectancia. Los carotenoides presentan un patrón de absorción característico con máximos en la región 420–480 nm y una reflectancia elevada en 530–600 nm, lo que potencialmente permitiría discriminar la presencia del hongo incluso en estadios tempranos de infección, antes de que se manifiesten síntomas visibles como clorosis o pústulas esporulantes. Sin embargo, al no haberse medido directamente la reflectancia o absorbancia de las urediniosporas aisladas, se desconoce si dicha señal es lo suficientemente intensa y específica para ser discriminada frente al fondo espectral del tejido foliar sano, cuyos componentes principales —clorofilas (picos de absorción en 430 nm y 660 nm), carotenoides foliares (450–500 nm) y agua (bandas en 970 nm y 1450 nm)— podrían enmascarar o solaparse con la firma del patógeno. La caracterización de las propiedades espectrales de las esporas constituye, por tanto, un paso ineludible para establecer un biomarcador óptico directo de la presencia del hongo, lo que permitiría en el futuro diseñar índices espectrales específicos que respondan directamente al patógeno y no exclusivamente a los cambios fisiológicos secundarios del hospedante (pérdida de clorofila, deshidratación, daño celular). 
+	
+	Desde una perspectiva teórica, esta investigación proporcionará los primeros fundamentos espectroscópicos cuantitativos del agente causal de la roya del cafeto, estableciendo una referencia óptica para el estudio de otros hongos fitopatógenos con pigmentación similar. Desde una perspectiva práctica, la identificación de biomarcadores ópticos específicos permitirá avanzar desde los actuales métodos de diagnóstico visual —que solo detectan la enfermedad entre 14 y 21 días post-inoculación, cuando ya hay esporulación activa \parencite{Talhinhas2017}— hacia sistemas de detección temprana basados en espectroscopía de campo, sensores portátiles o incluso plataformas de teledetección. Dicha capacidad de detección pre-sintomática tendría un impacto directo en el manejo integrado del cultivo, al permitir intervenciones localizadas y oportunas que reduzcan el uso de fungicidas, disminuyan los costos de producción y mitiguen las pérdidas económicas regionales, como las observadas en la epidemia centroamericana de 2012–2013 que generó daños superiores a USD 3,200 millones \parencite{Avelino2015}. En consecuencia, la presente investigación no solo llena un vacío de conocimiento fundamental en fitopatología óptica, sino que sienta las bases tecnológicas para el desarrollo de herramientas de diagnóstico temprano aplicables al manejo sostenible de una de las enfermedades más destructivas del café a nivel mundial.
+	
+	\section{Planteamiento del Problema}
+	
+	El problema central de esta investigación radica en la ausencia de fundamentos espectroscópicos validados para la detección temprana de roya del cafeto causada por \textit{H. vastatrix} antes de la manifestación de síntomas visuales, lo que impone tres limitaciones interrelacionadas que esta investigación busca resolver. En primer lugar, no existe una caracterización empírica de las propiedades espectrales de las urediniosporas de \textit{H. vastatrix} en el rango 350–1000 nm, incluyendo su reflectancia, absorbancia y posibles coeficientes de extinción, lo que impide conocer su firma espectral diferencial respecto a los componentes del tejido foliar sano de \textit{C. arabica} (clorofilas, carotenoides estructurales, agua, cera epicuticular). Sin esta información no es posible determinar si las esporas poseen un biomarcador óptico directo utilizable para detección, ni en qué longitudes de onda se concentraría la máxima discriminación. 
+	
+	En segundo lugar, se desconoce la evolución temporal de los cambios espectrales en hojas de \textit{C. arabica} durante la progresión de la infección por \textit{H. vastatrix}, desde la inoculación hasta la esporulación visible. Esta falta de conocimiento impide identificar la ventana temporal en la que los cambios espectrales —ya sea por la presencia física del hongo o por la respuesta fisiológica del hospedante— alcanzan un nivel detectable antes de la aparición de pústulas (14–21 días post-inoculación). Sin esta línea de tiempo espectral, cualquier intento de detección temprana carece de un anclaje temporal que permita definir cuándo medir y qué cambios buscar. 
+	
+	Por \'ultimo, al carecer de las dos bases anteriores (firma de referencia del patógeno y evolución temporal de cambios), no se han desarrollado índices espectrales específicos con coeficientes de variación y umbrales estadísticamente validados que discriminen entre hojas sanas e infectadas durante los estadios latente y pre-sintomático de la infección. La ausencia de dichos índices implica que los métodos espectroscópicos existentes para otras enfermedades no son directamente trasladables a la roya del cafeto, ya que cada patosistema presenta combinaciones únicas de pigmentos del patógeno, respuestas fisiológicas del hospedante y geometrías de interacción óptica. La imposibilidad de distinguir entre hoja sana, hoja infectada con presencia física del hongo en estadio pre-sintomático y hoja estresada por otras causas (mancha de hierro, ojo de gallo, déficit hídrico o nutricional) constituye la barrera técnica fundamental que impide el desarrollo de métodos espectroscópicos fiables y específicos para esta patosistema. Por lo tanto, no se dispone actualmente de los elementos mínimos —firmas espectrales de referencia del patógeno, series temporales de evolución de la infección e índices discriminantes con umbrales estadísticos— para construir una herramienta óptica de detección pre-sintomática con especificidad, sensibilidad y reproducibilidad adecuadas. La investigación actual opera, en consecuencia, en un régimen de incertidumbre espectral donde no se conoce si el patógeno posee una firma óptica detectable, cuándo aparecerían cambios medibles durante la infección ni cómo cuantificarlos mediante índices robustos. Resolver estas tres carencias de manera articulada constituye el núcleo del problema que esta investigación aborda.
+	
+	Pregunta de investigación: ¿Cuáles son las propiedades espectrales de reflectancia de las urediniosporas de \textit{Hemileia vastatrix} en el rango 350–1000 nm; cómo evolucionan dichas propiedades en hojas de \textit{Coffea arabica} durante la infección, identificando la ventana temporal pre-sintomática; y qué índices espectrales con reproducibilidad técnica (CV < 10\%) y significancia estadística (p < 0.05) permiten discriminar hojas sanas de infectadas?
+	
+	
+	\section{Objetivos de la Investigación}
+	
+	\phantomsection
+	
+	\subsection{Objetivo General}
+	Determinar y validar experimentalmente las firmas espectrales diferenciales asociadas a la presencia de \textit{Hemileia vastatrix} en hojas de \textit{Coffea arabica}, mediante la caracterización de las propiedades ópticas de sus urediniosporas y el análisis de la evolución temporal de los cambios espectrales durante la infección, para establecer biomarcadores ópticos que posibiliten la detección pre-sintomática de la roya del cafeto en el rango 350--1000 nm.
+	
+	\subsection{Objetivos Específicos}
+	\begin{enumerate}
+		\item Determinar las propiedades espectrales características de las urediniosporas de \textit{H. vastatrix} y establecer su firma espectral diferencial respecto a otros componentes foliares en el rango 350–1,000 nm.
+		
+		\item Establecer la evolución temporal de los cambios espectrales en hojas de \textit{C. arabica} durante la progresión de la infección por \textit{H. vastatrix} e identificar ventanas temporales de detección pre-sintomática.
+		
+		\item Desarrollar índices espectrales específicos (ICR, IDE, REF) con reproducibilidad técnica (coeficiente de variación $<$ 10\% entre réplicas) y umbrales que discriminen eficazmente (diferencia estadística $p < 0.05$) hojas sanas de infectadas durante la progresión de la infección.
+	\end{enumerate}
+	
+	
+	
+	% ========================================================================================================================================================================================================================================================================================================================================================================================================================================================
+	
+	\section{Estado del Arte y Fundamentación Teórica}
+	\phantomsection
+	
+	\subsection{Fundamentos de la Interacción Radiación-Materia en Medios Biológicos}
+	
+	La espectroscopía de reflectancia estudia la interacción entre la radiación electromagnética y la materia. Como establecieron Nicodemus y colaboradores en su trabajo seminal sobre reflectancia direccional, cuando un haz monocromático con intensidad $I_0(\lambda)$ incide sobre un medio estratificado como una hoja, la energía se redistribuye en tres componentes \parencite{Nicodemus1965}. Esta relación, conocida como ecuación de balance radiativo, se expresa como:
+	
+	\begin{equation}
+		R(\lambda) + T(\lambda) + A(\lambda) = 1
+		\label{eq:balance_energetico}
+	\end{equation}
+	
+	En esta ecuación, $R(\lambda)$ representa la reflectancia (fracción de energía reflejada), $T(\lambda)$ la transmitancia, y $A(\lambda)$ la absorbancia. Estas cantidades dependen de la longitud de onda $\lambda$, del ángulo de incidencia $\theta_i$, del estado de polarización, y de las propiedades ópticas intrínsecas del medio. Diversos autores han demostrado que para medios biológicos densos, la dependencia angular de la reflectancia sigue la ley de Lambert-Bouguer \parencite{Hecht2017, Saleh2019}.
+	
+	Para medios ópticamente densos como el mesófilo foliar de \textit{C. arabica}, cuyo espesor típico es de 100 a 300 micrómetros según mediciones reportadas por Féret et al., la transmitancia en el rango visible resulta despreciable debido a la alta densidad de pigmentos y a la dispersión múltiple en las interfaces aire-agua de los espacios intercelulares \parencite{feret2008}. En palabras de Thenkabail y colaboradores, "en hojas maduras con alta concentración de clorofila, la transmitancia en el visible es inferior al 1\% de la radiación incidente" \parencite{Thenkabail2012}. Bajo este régimen, la ecuación de balance se simplifica a:
+	
+	\begin{equation}
+		R(\lambda) \approx 1 - A(\lambda)
+		\label{eq:reflectancia_aproximada}
+	\end{equation}
+	
+	Esta aproximación, validada experimentalmente por Jacquemoud y Baret en su desarrollo del modelo PROSPECT, establece que la reflectancia es una medida indirecta de la absorción y, por tanto, de la concentración de los cromóforos presentes \parencite{jacquemoud1990}.
+	
+	La absorción de radiación por moléculas orgánicas sigue la ley de Beer-Lambert, cuyo formalismo fue desarrollado originalmente por Pierre Bouguer en 1729 y posteriormente generalizado por Johann Heinrich Lambert y August Beer. En su forma diferencial para un medio homogéneo, la ley establece:
+	
+	\begin{equation}
+		\frac{dI(z)}{dz} = -\mu_a(\lambda) I(z)
+		\label{eq:beer_lambert_diferencial}
+	\end{equation}
+	
+	Según explica Swinehart en su revisión clásica de la ley de Beer-Lambert, el coeficiente de absorción lineal $\mu_a(\lambda)$ puede descomponerse como la suma de las contribuciones de todas las especies absorbentes presentes en el medio \parencite{Swinehart1962}. Esta descomposición se expresa como:
+	
+	\begin{equation}
+		\mu_a(\lambda) = \sum_i \sigma_i(\lambda) N_i = \sum_i \varepsilon_i(\lambda) C_i
+		\label{eq:coeficiente_absorcion}
+	\end{equation}
+	
+	Aquí, $\sigma_i(\lambda)$ es la sección eficaz de absorción de la especie $i$, típicamente del orden de $10^{-16}$--$10^{-17}$ cm$^2$ para moléculas orgánicas según reportan Bohren y Huffman; $N_i$ es su densidad numérica; $\varepsilon_i(\lambda)$ es la absortividad molar, que puede alcanzar valores de $10^5$ L mol$^{-1}$ cm$^{-1}$ para transiciones electrónicas permitidas; y $C_i$ es la concentración molar \parencite{bohren1983, lichtenthaler2001}. La integración de la ecuación diferencial desde la superficie incidente ($z=0$) hasta la profundidad $z=d$ conduce a la forma integral de la ley de Beer-Lambert:
+	
+	\begin{equation}
+		I(d) = I_0 e^{-\mu_a(\lambda) d}
+		\label{eq:beer_lambert_integral}
+	\end{equation}
+	
+	Como señalan Skoog y colaboradores en su tratado de métodos instrumentales, esta relación exponencial es fundamental para la espectroscopía cuantitativa, pero debe aplicarse con precaución en medios dispersivos donde la longitud del camino óptico efectivo difiere de la distancia geométrica \parencite{Skoog2017}.
+	
+	\subsection{Ecuación de Transferencia Radiativa en Medios Vegetales}
+	
+	Los tejidos biológicos son medios turbios donde la dispersión de luz por estructuras celulares (cloroplastos, paredes celulares, espacios intercelulares) juega un papel igualmente importante que la absorción. El comportamiento de la luz en estos medios se describe mediante la ecuación de transferencia radiativa (ETR). La formulación moderna de esta ecuación se debe a Subrahmanyan Chandrasekhar, quien en su obra fundamental "Radiative Transfer" estableció las bases para medios planos-paralelos con dispersión isótropa \parencite{Chandrasekhar1960}. Para un medio en estado estacionario con propiedades independientes de la coordenada horizontal, la ETR unidimensional se escribe como:
+	
+	\begin{equation}
+		\mu \frac{\partial I(z, \mu, \lambda)}{\partial \tau(z, \lambda)} = I(z, \mu, \lambda) - \frac{\varpi(\lambda)}{2} \int_{-1}^{1} I(z, \mu', \lambda) d\mu'
+		\label{eq:etr_estacionaria}
+	\end{equation}
+	
+	Estudios posteriores de Ishimaru extendieron este formalismo a medios aleatorios y aplicaciones en óptica biomédica. En la ecuación anterior, $z$ es la profundidad geométrica dentro de la hoja ($z=0$ en la superficie adaxial y $z=d$ en la abaxial); $\mu = \cos\theta$ es el coseno del ángulo polar respecto a la normal; la profundidad óptica $\tau(z, \lambda)$ se define como $\tau(z, \lambda) = \int_{0}^{z} \mu_t(z', \lambda) dz'$; el coeficiente de atenuación total es $\mu_t(\lambda) = \mu_a(\lambda) + \mu_s(\lambda)$; y $\varpi(\lambda) = \mu_s(\lambda) / \mu_t(\lambda)$ es el albedo de dispersión simple \parencite{Ishimaru1978}.
+	
+	Como demostró van de Hulst en su tratamiento de la dispersión por partículas pequeñas, el albedo de dispersión varía entre 0 (absorción pura) y 1 (dispersión pura), y su valor determina el régimen de transporte radiativo en el medio \parencite{vandeHulst1981}. Para las hojas verdes en el rango visible, el albedo típico es $\varpi \approx 0.1$--$0.3$, indicando que la absorción domina sobre la dispersión; en cambio, en el infrarrojo cercano se invierte la situación con $\varpi \approx 0.8$--$0.95$ debido a la ausencia de absorción por pigmentos.
+	
+	La ecuación de transferencia radiativa no admite solución analítica cerrada para perfiles arbitrarios de $\mu_a(z)$ y $\mu_s(z)$. Sin embargo, para una hoja modelada como una capa homogénea de espesor óptico $\tau_0 = \mu_t d$, Chandrasekhar demostró que la intensidad emergente puede expresarse mediante las funciones de reflexión $R(\mu, \mu_0)$ y transmisión $T(\mu, \mu_0)$ \parencite{Chandrasekhar1960}:
+	
+	\begin{equation}
+		I(\tau_0, \mu, \lambda) = \int_{0}^{1} T(\mu, \mu_0, \lambda) I_0(\mu_0, \lambda) d\mu_0
+		\label{eq:solucion_etr}
+	\end{equation}
+	
+	\begin{equation}
+		I(0, -\mu, \lambda) = \int_{0}^{1} R(\mu, \mu_0, \lambda) I_0(\mu_0, \lambda) d\mu_0
+		\label{eq:reflectancia_etr}
+	\end{equation}
+	
+	Para aplicaciones prácticas en teledetección y espectroscopía foliar, Jacquemoud y Baret desarrollaron el modelo PROSPECT, que resuelve la ETR en la aproximación de Kubelka-Munk \parencite{jacquemoud1990}. Esta aproximación, originalmente formulada por Kubelka y Munk para la óptica de pinturas y recubrimientos, reemplaza el problema completo de transferencia radiativa por un sistema de dos ecuaciones diferenciales acopladas para los flujos descendente $I^+(z)$ y ascendente $I^-(z)$ \parencite{Kubelka1931}. El sistema es:
+	
+	\begin{equation}
+		\frac{dI^+(z)}{dz} = -(\mu_a + \mu_s) I^+(z) + \mu_s I^-(z)
+		\label{eq:kubelka_munk_1}
+	\end{equation}
+	
+	\begin{equation}
+		-\frac{dI^-(z)}{dz} = -(\mu_a + \mu_s) I^-(z) + \mu_s I^+(z)
+		\label{eq:kubelka_munk_2}
+	\end{equation}
+	
+	La solución de este sistema para una capa homogénea de espesor $d$ con coeficientes constantes fue obtenida por Kubelka y Munk en su trabajo original. La reflectancia difusa en la superficie $z=0$ resulta:
+	
+	\begin{equation}
+		R_{\text{KM}}(\lambda) = \frac{1 - \rho_0 - (1 - \rho_0) e^{-\gamma(\lambda) d}}{1 - \rho_0 e^{-\gamma(\lambda) d}}
+		\label{eq:reflectancia_kubelka_munk}
+	\end{equation}
+	
+	Según explican Féret et al. en la extensión del modelo PROSPECT, los parámetros $\rho_0 = \sqrt{1 - \mu_s/(\mu_a + \mu_s)}$ y $\gamma(\lambda) = \sqrt{\mu_a(\mu_a + 2\mu_s)}$ representan, respectivamente, la reflectancia de una capa semi-infinita y el coeficiente de atenuación efectiva \parencite{feret2008}. Este modelo constituye el fundamento teórico de la mayoría de los índices espectrales utilizados en vegetación, incluyendo los propuestos en esta investigación.
+	
+	\subsection{Propiedades Ópticas de Pigmentos Foliares: Tratamiento Cuántico}
+	
+	Las clorofilas y carotenoides absorben luz mediante transiciones electrónicas entre orbitales moleculares. Como explicó Britton en su revisión exhaustiva de las propiedades de los carotenoides, el sistema conjugado de dobles enlaces en el anillo porfirínico de las clorofilas puede modelarse como un pozo de potencial cuántico unidimensional de longitud $L$ \parencite{Britton1995}. Los niveles energéticos permitidos para un electrón en este sistema, según la solución de la ecuación de Schrödinger independiente del tiempo con condiciones de contorno de paredes infinitas, son:
+	
+	\begin{equation}
+		E_n = \frac{n^2 h^2}{8 m_e L^2}, \quad n = 1, 2, 3, \ldots
+		\label{eq:niveles_energeticos_pozo}
+	\end{equation}
+	
+	Esta expresión, que surge de la cuantización del momento lineal $p_n = nh/(2L)$, fue aplicada por primera vez a sistemas conjugados en la década de 1930. En estas ecuaciones, $h$ es la constante de Planck y $m_e$ es la masa del electrón en reposo. La transición óptica fundamental corresponde al salto desde el nivel ocupado más alto ($n$) al nivel vacío más bajo ($n+1$). Lichtenthaler y Buschmann demostraron, mediante mediciones de absorción de alta resolución, que la energía del fotón absorbido en esta transición es:
+	
+	\begin{equation}
+		\Delta E = E_{n+1} - E_n = \frac{h^2}{8 m_e L^2} \left[ (n+1)^2 - n^2 \right] = \frac{h^2(2n+1)}{8 m_e L^2}
+		\label{eq:transicion_electronica}
+	\end{equation}
+	
+	Para la clorofila $a$ en solución, trabajos experimentales han determinado que la longitud efectiva del pozo es $L \approx 1.6$ nm (16 Å), y el número cuántico del nivel ocupado más alto es $n = 8$ \parencite{lichtenthaler2001}. Sustituyendo estos valores:
+	
+	\begin{equation}
+		\Delta E \approx \frac{(6.626 \times 10^{-34})^2 (17)}{8 (9.109 \times 10^{-31}) (1.6 \times 10^{-9})^2} \approx 2.9 \text{ eV}
+		\label{eq:energia_clorofila}
+	\end{equation}
+	
+	Esta energía corresponde a $\lambda = hc/\Delta E \approx 427$ nm. Como señalan Lichtenthaler y Buschmann, este valor coincide con la banda Soret observada experimentalmente en los espectros de absorción de clorofilas, que presenta un coeficiente de extinción molar de aproximadamente $\varepsilon \approx 10^5$ L mol$^{-1}$ cm$^{-1}$ \parencite{lichtenthaler2001}. La segunda transición importante ($n=9 \rightarrow n=10$) produce una energía $\Delta E \approx 1.8$ eV, correspondiente a $\lambda \approx 689$ nm, que es la banda Q de absorción en el rojo.
+	
+	El coeficiente de absorción macroscópico de una hoja, según el modelo PROSPECT desarrollado por Jacquemoud y Baret, se obtiene de la contribución colectiva de millones de moléculas de pigmento \parencite{jacquemoud1990}. En la versión más reciente del modelo, Féret et al. propusieron la siguiente expresión para el coeficiente de absorción debido a clorofilas y carotenoides \parencite{feret2008}:
+	
+	\begin{equation}
+		\mu_a^{\text{pig}}(\lambda) = \varepsilon_{\text{Chl}}(\lambda) C_{\text{Chl}} + \varepsilon_{\text{Car}}(\lambda) C_{\text{Car}}
+		\label{eq:mu_a_pigmentos}
+	\end{equation}
+	
+	En esta ecuación, $\varepsilon_{\text{Chl}}(\lambda)$ y $\varepsilon_{\text{Car}}(\lambda)$ son las absortividades molares de clorofilas y carotenoides, respectivamente, mientras que $C_{\text{Chl}}$ y $C_{\text{Car}}$ son sus concentraciones. Mediciones realizadas por Féret et al. en hojas de \textit{Coffea arabica} reportaron valores típicos de $C_{\text{Chl}} = 400$ a 600 $\mu$g cm$^{-2}$ y $C_{\text{Car}} = 100$ a 150 $\mu$g cm$^{-2}$ \parencite{feret2008}.
+	
+	\subsection{Modelado Cuántico de Carotenoides en Urediniosporas}
+	
+	Los carotenoides presentes en las urediniosporas de \textit{H. vastatrix} son hidrocarburos de 40 átomos de carbono ($\text{C}_{40}\text{H}_{56}$) con una cadena poliénica de $N$ dobles enlaces conjugados. En su revisión sobre la estructura y propiedades de los carotenoides, Britton explica que esta estructura puede modelarse mediante el método del electrón libre en una caja cuántica unidimensional, también conocido como modelo de Kuhn \parencite{Britton1995}. La función de onda para un electrón en esta cadena es solución de la ecuación de Schrödinger independiente del tiempo con condiciones de contorno de paredes infinitas:
+	
+	\begin{equation}
+		\psi_k(x) = \sqrt{\frac{2}{L}} \sin\left(\frac{k\pi x}{L}\right), \quad k = 1, 2, 3, \ldots
+		\label{eq:funcion_onda_carotenoide}
+	\end{equation}
+	
+	Según este modelo, la longitud efectiva de la caja es $L = (N+1)a$, donde $a \approx 0.14$ nm es la distancia promedio entre átomos de carbono adyacentes en la cadena conjugada. El momento dipolar de transición entre los niveles $k$ y $k+1$ fue calculado por Mulliken y colaboradores en sus estudios sobre intensidades de bandas de absorción. La expresión resultante es:
+	
+	\begin{equation}
+		\mu_{k,k+1} = \langle \psi_k | e x | \psi_{k+1} \rangle = \frac{2eL}{\pi^2} \frac{8(k+1)}{(2k+1)^2}
+		\label{eq:momento_dipolar_carotenoide}
+	\end{equation}
+	
+	La energía de la transición principal, como se deriva de la diferencia entre los niveles $k+1$ y $k$, es:
+	
+	\begin{equation}
+		\Delta E = \frac{h^2}{8 m_e L^2} \left[ (k+1)^2 - k^2 \right] = \frac{h^2(2k+1)}{8 m_e L^2}
+		\label{eq:energia_transicion_carotenoide}
+	\end{equation}
+	
+	Para el $\beta$-caroteno, Britton reporta $N=11$ dobles enlaces conjugados, lo que da una longitud de caja $L = 12a \approx 1.68$ nm y un número cuántico $k=11$ para el nivel ocupado más alto \parencite{Britton1995}. Sustituyendo estos valores en la expresión anterior:
+	
+	\begin{equation}
+		\Delta E = \frac{(6.626 \times 10^{-34})^2 (23)}{8 (9.109 \times 10^{-31}) (1.68 \times 10^{-9})^2} \approx 2.76 \text{ eV}
+		\label{eq:energia_carotenoide_calculada}
+	\end{equation}
+	
+	Esta energía corresponde a una longitud de onda $\lambda_{\max} = hc/\Delta E \approx 449$ nm. Según los espectros de absorción publicados por Britton, el $\beta$-caroteno en solventes no polares presenta máximos de absorción a 425, 451 y 480 nm \parencite{Britton1995}. Esta estructura vibracional fina, observada también por Lichtenthaler y Buschmann en sus mediciones, es consecuencia del acoplamiento electrón-fonón en la molécula \parencite{lichtenthaler2001}. El espectro de absorción puede modelarse como una suma de contribuciones vibracionales:
+	
+	\begin{equation}
+		\sigma_{\text{Car}}(\lambda) = \sum_{v=0}^{2} A_v \exp\!\left[ -\frac{(hc/\lambda - \Delta E_0 - v\hbar\omega)^2}{2\gamma_v^2} \right]
+		\label{eq:espectro_carotenoide_vibracional}
+	\end{equation}
+	
+	En esta expresión, $\Delta E_0$ es la energía de transición electrónica pura, $\hbar\omega \approx 0.17$ eV es la energía del modo vibracional activo (equivalente a aproximadamente 1370 cm$^{-1}$), y $\gamma_v$ es el ancho de banda gaussiano. Este formalismo, originalmente desarrollado por Franck y Condon para explicar las transiciones vibracionales en moléculas diatómicas, ha sido exitosamente aplicado a sistemas poliénicos por diversos autores.
+	
+	\subsection{Dispersión de Luz por Urediniosporas: Teoría de Mie}
+	
+	Las urediniosporas de \textit{H. vastatrix} tienen un diámetro típico de $25 \pm 5$ micrómetros. Según mediciones reportadas por McCartney y colaboradores en su estudio sobre dispersión de esporas fúngicas, el índice de refracción relativo al agua para las paredes esporales es $n_r = 1.42$ a $1.45$ \parencite{mccartney2006}. Para una partícula esférica homogénea inmersa en un medio dieléctrico, la dispersión de luz se describe mediante la teoría de Mie. Este formalismo, desarrollado por Gustav Mie en 1908, resuelve exactamente las ecuaciones de Maxwell para una onda plana incidente sobre una esfera de radio $a$ e índice de refracción complejo $n = n' + i n''$. Como explican Bohren y Huffman en su tratado clásico, la solución se expresa en términos de una serie infinita de armónicos esféricos \parencite{bohren1983}.
+	
+	El parámetro de tamaño adimensional $x$ se define como:
+	
+	\begin{equation}
+		x = \frac{2\pi a}{\lambda} = \frac{\pi d}{\lambda}
+		\label{eq:parametro_tamano}
+	\end{equation}
+	
+	Para una espora de diámetro $d = 25$ $\mu$m y una longitud de onda $\lambda = 550$ nm (centro del espectro visible), van de Hulst demostró que este parámetro toma un valor mucho mayor que la unidad \parencite{vandeHulst1981}:
+	
+	\begin{equation}
+		x = \frac{\pi \times 25 \times 10^{-6}}{550 \times 10^{-9}} \approx 143
+		\label{eq:x_calculado}
+	\end{equation}
+	
+	Bajo esta condición, la espora se encuentra en el régimen de dispersión de Mie para partículas grandes. Según Bohren y Huffman, en este régimen la sección eficaz de dispersión tiende al límite geométrico $Q_{\text{sca}} \rightarrow 2$, un resultado conocido como la paradoja de la extinción \parencite{bohren1983}. La sección eficaz de extinción total, que incluye tanto absorción como dispersión, viene dada por:
+	
+	\begin{equation}
+		Q_{\text{ext}} = \frac{2}{x^2} \sum_{n=1}^{\infty} (2n+1) \text{Re}\{a_n + b_n\}
+		\label{eq:q_ext_mie}
+	\end{equation}
+	
+	En el desarrollo original de Mie, los coeficientes $a_n$ y $b_n$ se expresan en términos de las funciones de Bessel esféricas $j_n(z)$ y las funciones de Hankel esféricas $h_n^{(1)}(z)$. Las expresiones completas son:
+	
+	\begin{equation}
+		a_n = \frac{m j_n(mx) j_n'(x) - j_n(x) j_n'(mx)}{m j_n(mx) h_n^{(1)'}(x) - h_n^{(1)}(x) j_n'(mx)}
+		\label{eq:coeficiente_an}
+	\end{equation}
+	
+	\begin{equation}
+		b_n = \frac{j_n(mx) j_n'(x) - m j_n(x) j_n'(mx)}{j_n(mx) h_n^{(1)'}(x) - m h_n^{(1)}(x) j_n'(mx)}
+		\label{eq:coeficiente_bn}
+	\end{equation}
+	
+	Aquí, $m = n_{\text{espora}}/n_{\text{medio}} \approx 1.42/1.33 = 1.068$ es el índice de refracción relativo. Las primas denotan diferenciación respecto del argumento. Como señalan van de Hulst y otros autores, para $x \gg 1$ la serie converge lentamente y se requieren hasta $n_{\max} \approx x$ términos para obtener una precisión aceptable \parencite{vandeHulst1981}. Sin embargo, en este límite puede utilizarse la aproximación de Fraunhofer, que conduce a una expresión simplificada para la sección eficaz de dispersión:
+	
+	\begin{equation}
+		Q_{\text{sca}} \approx 2 - \frac{4}{\rho} \sin\rho + \frac{4}{\rho^2}(1 - \cos\rho)
+		\label{eq:q_sca_aproximado}
+	\end{equation}
+	
+	En esta aproximación, $\rho = 2x(m-1)$ es el parámetro de retardo de fase. Como demostró van de Hulst, este parámetro cuantifica el desfase acumulado por un rayo que atraviesa la partícula en comparación con otro que viaja por el medio circundante.
+	
+	La función de fase de dispersión $P(\theta)$, que describe la distribución angular de la luz dispersada, fue derivada por Mie en su trabajo original. En términos de las amplitudes de dispersión $S_1(\theta)$ y $S_2(\theta)$, correspondientes a polarizaciones perpendicular y paralela al plano de dispersión respectivamente, la función de fase se escribe como \parencite{bohren1983}:
+	
+	\begin{equation}
+		P(\theta) = \frac{4\pi}{k^2 \sigma_{\text{sca}}} \left( |S_1(\theta)|^2 + |S_2(\theta)|^2 \right)
+		\label{eq:funcion_fase_mie}
+	\end{equation}
+	
+	Para partículas grandes ($x \gg 1$), el patrón de dispersión está altamente concentrado hacia adelante. Este fenómeno, conocido como difracción de Fraunhofer, fue estudiado extensamente por van de Hulst \parencite{vandeHulst1981}. La fracción de luz dispersada hacia atrás (ángulo de dispersión $\theta = 180^\circ$, es decir, retrodispersión) representa una pequeña fracción del total, pero es precisamente esta componente la que mide un espectrómetro en configuración de reflectancia.
+	
+	En el límite de partículas muy grandes ($x \rightarrow \infty$), el coeficiente de dispersión volumétrico $\mu_s(\lambda)$ se vuelve independiente de la longitud de onda. Según el tratamiento de Bohren y Huffman, esta independencia espectral se expresa como \parencite{bohren1983}:
+	
+	\begin{equation}
+		\mu_s(\lambda) \approx \frac{3}{2} \frac{\phi}{a} \quad \text{(independiente de } \lambda\text{)}
+		\label{eq:mu_s_geometrico}
+	\end{equation}
+	
+	En esta expresión, $\phi$ es la fracción de volumen ocupada por las esporas en la suspensión o sobre la superficie foliar. Como advierten Bohren y Huffman, esta independencia espectral tiene consecuencias fundamentales para la detección de \textit{H. vastatrix}: dado que las esporas dispersan todas las longitudes de onda por igual, su firma espectral diferencial está dominada exclusivamente por la absorción de carotenoides y no por efectos dispersivos \parencite{bohren1983}. Basándose en este principio, y siguiendo el tratamiento de la teoría de transferencia radiativa para medios con inclusiones dispersoras, el contraste espectral $\Delta R(\lambda)$ entre una hoja infectada y una hoja sana puede aproximarse mediante:
+	
+	\begin{equation}
+		\Delta R(\lambda) \approx \frac{\phi \sigma_{\text{abs}}^{\text{Car}}(\lambda)}{1 + \phi \sigma_{\text{abs}}^{\text{Car}}(\lambda) / 2}
+		\label{eq:delta_r_final}
+	\end{equation}
+	
+	Según esta expresión deducida por diversos autores en el contexto de la espectroscopía de medios turbios, el máximo contraste ocurre en las longitudes de onda donde la absorción de carotenoides es máxima (450-480 nm), y el contraste tiende a la saturación cuando la fracción de esporas aumenta \parencite{Zonios2006, Mourant1997}.
+	
+	\subsection{Modelado de la Evolución Temporal de la Infección}
+	
+	La progresión de la infección por \textit{H. vastatrix} en hojas de \textit{C. arabica} sigue típicamente un comportamiento sigmoide. Basándose en estudios epidemiológicos del patosistema, Talhinhas y colaboradores propusieron que el parámetro de daño foliar $D(t)$ puede modelarse mediante una función logística \parencite{Talhinhas2017}:
+	
+	\begin{equation}
+		D(t) = \frac{D_{\max}}{1 + \exp[-k(t - t_0)]}
+		\label{eq:logistica_dano}
+	\end{equation}
+	
+	En esta expresión, $D_{\max}$ representa la severidad máxima alcanzada al final del período de observación, $k$ es la tasa de crecimiento intrínseca del patógeno, y $t_0$ es el punto de inflexión donde la tasa de crecimiento es máxima. Como demostraron Silva et al. en sus estudios sobre resistencia del café a la roya, este tipo de modelo logístico ha sido validado experimentalmente para diversas variedades de \textit{C. arabica} y diversas cepas del patógeno \parencite{Silva2006}.
+	
+	Mahlein, en su revisión sobre detección de enfermedades vegetales mediante sensores, propuso que el coeficiente de absorción efectivo de una hoja infectada puede descomponerse en tres contribuciones independientes \parencite{Mahlein2016}. Esta descomposición, análoga a la propuesta por Gold et al. para la detección pre-sintomática de tizón tardío en papa, se escribe como \parencite{Gold2020}:
+	
+	\begin{equation}
+		\mu_a(\lambda, t) = (1 - D(t)) \mu_a^{\text{sano}}(\lambda) + D(t) \left[ \mu_a^{\text{patógeno}}(\lambda) + \mu_a^{\text{estrés}}(\lambda, t) \right]
+		\label{eq:mu_a_temporal}
+	\end{equation}
+	
+	En esta ecuación, el primer término representa la contribución del tejido sano, que disminuye linealmente a medida que la infección progresa. El segundo término incluye dos componentes: $\mu_a^{\text{patógeno}}(\lambda)$, que es la absorción debida a las estructuras fúngicas (dominada por los carotenoides de las urediniosporas según se describió en la sección anterior), y $\mu_a^{\text{estrés}}(\lambda, t)$, que representa la respuesta del hospedante (degradación de clorofilas, producción de compuestos fenólicos como antocianinas, y alteraciones en la estructura celular del mesófilo).
+	
+	La degradación de clorofilas sigue una cinética de primer orden. Como demostraron experimentalmente Lichtenthaler y Buschmann en sus mediciones de pigmentos foliares, la velocidad de pérdida de clorofila es proporcional a la concentración remanente \parencite{lichtenthaler2001}:
+	
+	\begin{equation}
+		\frac{dC_{\text{Chl}}(t)}{dt} = -k_{\text{deg}} C_{\text{Chl}}(t)
+		\label{eq:cinetica_degradacion}
+	\end{equation}
+	
+	La integración directa de esta ecuación diferencial ordinaria con condición inicial $C_{\text{Chl}}(0) = C_0$ conduce a una función exponencial decreciente:
+	
+	\begin{equation}
+		C_{\text{Chl}}(t) = C_0 e^{-k_{\text{deg}} t}
+		\label{eq:clorofila_temporal}
+	\end{equation}
+	
+	Según reportan Silva et al. en sus estudios sobre la interacción \textit{Coffea-Hemileia}, la constante de degradación $k_{\text{deg}}$ depende de la virulencia de la cepa del patógeno y de las condiciones ambientales (temperatura y humedad relativa) \parencite{Silva2006}. Para infecciones por \textit{H. vastatrix} en condiciones óptimas de invernadero ($T = 22$--$24^\circ$C y HR $> 85\%$), los valores típicos reportados son $k_{\text{deg}} \approx 0.1$ a $0.3$ días$^{-1}$ \parencite{Talhinhas2017}.
+	
+	\subsection{Fundamentos de los Índices Espectrales Propuestos}
+	
+	Los índices espectrales propuestos se basan en la teoría de Kubelka-Munk y en la dependencia espectral de los coeficientes de absorción. El Índice de Carotenoides de Roya (ICR) se define como:
+	
+	\begin{equation}
+		\text{ICR} = \frac{R_{570} - R_{450}}{R_{570} + R_{450}}
+		\label{eq:icr}
+	\end{equation}
+	
+	Según explican Thenkabail y colaboradores en su tratado sobre teledetección hiperespectral de vegetación, la forma normalizada $\text{NDVI}_{i,j} = (R_i - R_j)/(R_i + R_j)$ garantiza que los valores del índice estén confinados al intervalo $[-1, 1]$, independientemente de las condiciones de iluminación o del instrumento utilizado \parencite{Thenkabail2012}. Como demostraron Mahlein et al. en su desarrollo de índices espectrales para la identificación de enfermedades foliares, la justificación física del ICR se basa en que, para pequeñas variaciones en el coeficiente de absorción, la reflectancia se comporta linealmente según la aproximación de primer orden \parencite{Mahlein2013}:
+	
+	\begin{equation}
+		R(\lambda) \approx R_0 - \frac{\partial R}{\partial \mu_a} \Delta \mu_a(\lambda)
+		\label{eq:reflectancia_perturbacion}
+	\end{equation}
+	
+	Para el ICR, la diferencia $R_{570} - R_{450}$ es sensible a $\Delta \mu_a(450)$ (absorción por carotenoides en la región azul) pero no a $\Delta \mu_a(570)$, ya que en esta última longitud de onda los carotenoides presentan un mínimo de absorción. La normalización por la suma $R_{570} + R_{450}$ elimina las variaciones en la intensidad de iluminación y en la reflectancia basal del tejido sano.
+	
+	El Índice de Detección Temprana (IDE) se define mediante una combinación más compleja de cuatro longitudes de onda:
+	
+	\begin{equation}
+		\text{IDE} = \frac{R_{550} - R_{680}}{R_{700}} - \frac{R_{450}}{R_{550}}
+		\label{eq:ide}
+	\end{equation}
+	
+	Como demostró Gold et al. en su estudio sobre detección pre-sintomática de enfermedades en papa, el primer término de esta expresión captura cambios en la pendiente del "red edge" (la región de transición entre 680 y 750 nm donde la reflectancia aumenta drásticamente debido al fin de la absorción por clorofila) \parencite{Gold2020}. El cociente $(R_{550} - R_{680})/R_{700}$ es sensible a la degradación temprana de clorofila incluso antes de que esta sea visible como clorosis. El segundo término, $R_{450}/R_{550}$, actúa como factor de corrección por variaciones en los carotenoides foliares estructurales que no están asociados a la infección.
+	
+	El Ratio de Estrés Foliar (REF) se simplifica notablemente al cancelar términos comunes:
+	
+	\begin{equation}
+		\text{REF} = \frac{R_{750}}{R_{680}} \times \frac{R_{570}}{R_{750}} = \frac{R_{570}}{R_{680}}
+		\label{eq:ref}
+	\end{equation}
+	
+	Según el análisis de Mahlein et al., este índice es simplemente el cociente entre la reflectancia a 570 nm (zona de mínima absorción de clorofilas y carotenoides) y la reflectancia a 680 nm (pico de absorción de clorofila $a$) \parencite{Mahlein2013}. La sensibilidad del REF a la infección proviene de dos efectos complementarios: primero, el aumento de $R_{680}$ por degradación de clorofilas (menor absorción en el rojo) y, segundo, la posible disminución de $R_{570}$ por la absorción adicional de los carotenoides fúngicos en la región azul-verde, aunque este último efecto es menos pronunciado en 570 nm que en 450 nm.
+	
+	\subsection{Ecuaciones de Cambio en la Ventana Pre-Sintomática}
+	
+	Para cuantificar la detección pre-sintomática se define una función de contraste temporal. Siguiendo el enfoque de Gold et al. para la detección temprana de patógenos foliares, esta función se define como la desviación relativa del índice espectral respecto al valor basal de plantas sanas \parencite{Gold2020}:
+	
+	\begin{equation}
+		C(t) = \frac{I(t) - I_{\text{sano}}}{I_{\text{sano}}}
+		\label{eq:contraste_temporal}
+	\end{equation}
+	
+	En esta expresión, $I(t)$ representa el valor del índice espectral (ICR, IDE o REF) en el día $t$ post-inoculación, y $I_{\text{sano}}$ es el valor medio del índice en el grupo de control negativo (plantas no inoculadas). La primera derivada temporal de esta función, que cuantifica la tasa instantánea de cambio del contraste, se obtiene por diferenciación:
+	
+	\begin{equation}
+		\frac{dC(t)}{dt} = \frac{1}{I_{\text{sano}}} \frac{dI(t)}{dt}
+		\label{eq:derivada_contraste}
+	\end{equation}
+	
+	Basándose en principios de control de calidad estadístico, Mahlein propuso que el día de primera detección $t^*$ se define como el día más temprano en el que el contraste supera un umbral basado en la variabilidad natural del tejido sano \parencite{Mahlein2016}. Adoptando un criterio de tres desviaciones estándar (que, bajo el supuesto de normalidad, garantiza una tasa de falsos positivos inferior al 0.3\%), este umbral se expresa como:
+	
+	\begin{equation}
+		t^* = \min \left\{ t : C(t) > 3\sigma_{\text{sano}} / I_{\text{sano}} \right\}
+		\label{eq:dia_deteccion}
+	\end{equation}
+	
+	Aquí, $\sigma_{\text{sano}}$ es la desviación estándar de las mediciones del índice en el grupo control. La amplitud de la ventana pre-sintomática, definida como el intervalo entre la detección espectral y la manifestación visual de síntomas, es entonces $\Delta t_{\text{pre}} = t_{\text{síntomas}} - t^*$, donde $t_{\text{síntomas}}$ es el día en que se observa clorosis visible en al menos el 50\% de las plantas del grupo esporulante.
+	
+	\subsection{Validación Espectro-Histológica}
+	
+	La validación de la detección espectral requiere correlacionar los cambios observados en $\Delta R(\lambda)$ con la presencia confirmada de estructuras fúngicas en el tejido foliar. Siguiendo el modelo de medios efectivos propuesto por Zonios y Dimou para tejidos biológicos, la concentración superficial de esporas $N_{\text{esporas}}$ (en cm$^{-2}$) se relaciona con el cambio en reflectancia mediante una función de saturación \parencite{Zonios2006}:
+	
+	\begin{equation}
+		\Delta R(\lambda) = \frac{N_{\text{esporas}} \sigma_{\text{sca}}(\lambda)}{1 + N_{\text{esporas}} \sigma_{\text{sca}}(\lambda) / 2} \times \left[ \frac{\sigma_{\text{abs}}^{\text{Car}}(\lambda)}{\sigma_{\text{sca}}(\lambda)} \right]
+		\label{eq:delta_r_esporas}
+	\end{equation}
+	
+	Esta expresión, derivada por Mourant et al. en el contexto de la espectroscopía de medios turbios, representa una generalización de la ley de Beer-Lambert para suspensiones concentradas donde los efectos de dispersión múltiple no pueden despreciarse \parencite{Mourant1997}. El factor entre corchetes representa la eficiencia de absorción de los carotenoides relativa a la dispersión de las esporas. Esta ecuación permite, en principio, estimar la densidad de esporas a partir de las mediciones espectrales, una vez calibrada la sección eficaz de dispersión $\sigma_{\text{sca}}(\lambda)$ mediante mediciones de suspensiones de concentración conocida (como se describe en el protocolo experimental del OE1).
+	
+	\subsection{Detección Espectral de Roya del Cafeto: Estado Actual}
+	
+	La aplicación de espectroscopía de reflectancia a la detección de \textit{H. vastatrix} en \textit{C. arabica} es un área relativamente inexplorada desde el punto de vista teórico y experimental. A escala de dosel, Chemura et al. emplearon imágenes Landsat 8 para mapear la incidencia de roya en plantaciones comerciales de Zimbabwe \parencite{Chemura2017}. Estos autores reportaron correlaciones significativas ($r = -0.67$, con un nivel de significancia $p < 0.01$) entre la severidad de roya estimada mediante evaluación visual en campo y los índices espectrales NDVI y EVI derivados de las imágenes satelitales. El signo negativo de la correlación es físicamente consistente con lo esperado según la ecuación $\ref{eq:reflectancia_aproximada}$: a mayor severidad de infección, mayor degradación de clorofilas, menor absorción en el rojo, y por tanto menor valor del NDVI. Sin embargo, como advierten los propios autores, la escala satelital (resolución de 30 m por píxel) impide distinguir si las variaciones espectrales detectadas provienen de la presencia directa de urediniosporas, de la respuesta fisiológica del hospedante, o de factores de confusión como la variabilidad del suelo o la sombra.
+	
+	A escala de hoja individual, Pinto et al. realizaron mediciones espectrales con espectrorradiómetro de contacto en el rango 350-2500 nm sobre hojas de \textit{C. arabica} inoculadas en condiciones controladas de invernadero \parencite{Pinto2021}. Estos autores documentaron que las diferencias espectrales más pronunciadas entre hojas sanas e infectadas ocurren en tres regiones del espectro: la banda del rojo (650-680 nm), asociada a la degradación de clorofilas; la región del "red edge" (700-750 nm), sensible a cambios en la estructura del mesófilo y al contenido de clorofila; y el infrarrojo de onda corta (1450-1650 nm), relacionado con alteraciones en el contenido hídrico del tejido. Este estudio es metodológicamente el más cercano al enfoque de la presente investigación, aunque, como señalan los autores, no incluyó caracterización óptica independiente de las urediniosporas ni un modelo de transferencia radiativa que permitiera separar las contribuciones espectrales del patógeno y del hospedante.
+	
+	En el ámbito de la caracterización óptica de esporas fúngicas, los trabajos previos en otros patosistemas han demostrado que las urediniosporas presentan firmas espectrales distintivas. Por ejemplo, estudios sobre \textit{Puccinia striiformis} (roya amarilla del trigo) han reportado un pico de reflectancia característico en torno a 570-590 nm, asociado a la absorción de carotenoides. No obstante, como se desprende de la revisión de la literatura presentada, no existe hasta la fecha una caracterización experimental del espectro de reflectancia de las urediniosporas de \textit{H. vastatrix} publicada en la literatura especializada. Esta brecha de conocimiento constituye la motivación central de la presente investigación, que aborda simultáneamente la caracterización óptica del patógeno, el seguimiento temporal de la infección y el desarrollo de índices espectrales específicos.
+	
+	\subsection{Umbral de Viabilidad de Germinación de Esporas}
+	
+	La prueba de viabilidad de esporas se fundamenta en el principio de que la germinación requiere la activación del metabolismo y la síntesis de proteínas. Según Money en su tratado sobre biología fúngica, la fracción germinada $f_g$ sigue una cinética de primer orden controlada por la disponibilidad de agua y nutrientes \parencite{Money2016}:
+	
+	\begin{equation}
+		\frac{df_g}{dt} = k_g (1 - f_g)
+		\label{eq:cinetica_germinacion}
+	\end{equation}
+	
+	La integración de esta ecuación diferencial con la condición inicial $f_g(0) = 0$ conduce a una función exponencial creciente $f_g(t) = 1 - e^{-k_g t}$, donde la constante de velocidad $k_g$ depende de la temperatura y la humedad ambiental. El umbral del 70\% de germinación se justifica por consideraciones sobre la integridad de los pigmentos carotenoides. Como demostró Britton en sus estudios sobre la estabilidad de carotenoides, la degradación fotoquímica de estos pigmentos está directamente correlacionada con la pérdida de viabilidad celular \parencite{Britton1995}. La absorbancia medida en una suspensión de esporas es una combinación lineal de las contribuciones de esporas vivas y muertas:
+	
+	\begin{equation}
+		\sigma_{\text{Car}}(t) = \sigma_{\text{Car}}(0) \cdot f_g(t) + \sigma_{\text{Car}}^{\text{muerto}} \cdot (1 - f_g(t))
+		\label{eq:absorcion_viabilidad}
+	\end{equation}
+	
+	Si la fracción germinada $f_g$ cae por debajo de 0.7, la contribución de esporas muertas supera el 30\% del total. Según los estudios de Talhinhas et al., en esporas no viables los carotenoides experimentan una degradación significativa con la consiguiente alteración de los coeficientes de absorción \parencite{Talhinhas2017}. Por lo tanto, el umbral del 70\% garantiza que la fracción de esporas con carotenoides degradados sea suficientemente baja para que la firma espectral medida sea representativa de esporas fisiológicamente activas. Este criterio ha sido ampliamente adoptado en estudios de laboratorio con urediniosporas de diversos hongos del orden Pucciniales \parencite{Money2016, Talhinhas2017}.
+	
+	%===================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+	
+	
+	\section{Metodología}
+	
+	\subsection{Tipo de Investigación}
+	
+	Según la clasificación metodológica de Hernández Sampieri, Fernández Collado y Baptista Lucio, la presente investigación se enmarca dentro del enfoque cuantitativo, dado que se fundamenta en la medición numérica de la reflectancia espectral (350--1000 nm), en el cálculo de índices normalizados (ICR, IDE, REF) y en el análisis estadístico de los datos mediante pruebas paramétricas y no paramétricas (ANOVA, Kruskal-Wallis, correlación de Pearson) para probar la existencia de diferencias significativas entre hojas sanas e infectadas \parencite{sampieri2014}. 
+	
+	El alcance del estudio es de tipo exploratorio-descriptivo: exploratorio porque no existen antecedentes en la literatura científica sobre la caracterización espectral de las urediniosporas de \textit{Hemileia vastatrix}, lo que implica que se está indagando en un problema poco estudiado; y descriptivo porque se propone documentar de manera sistemática las propiedades espectrales del patógeno, la evolución temporal de los cambios en el hospedador \textit{Coffea arabica} durante 21 días post-inoculación, y los umbrales cuantitativos de discriminación entre estadios de infección (latente, pre-sintomático y esporulante) \parencite{sampieri2014}. 
+	
+	El diseño es experimental puro y longitudinal, ya que se manipula intencionalmente la variable independiente (inoculación con suspensión de esporas a concentración de $1 \times 10^5$ esp/mL) mediante la comparación con grupos de control (plantas sanas no inoculadas y hojas adyacentes no inoculadas), y se realizan mediciones repetidas diariamente durante un período de 21 días sobre las mismas unidades experimentales \parencite{sampieri2014}. El muestreo es no probabilístico de tipo intencional o por conveniencia, puesto que las plantas y esporas se seleccionan con criterios definidos (rango etario de 3 a 4 meses, variedad Caturra, período epidemiológico de septiembre a noviembre) y no mediante un sorteo aleatorio de todas las plantas de la región \parencite{sampieri2014}. Esta categorización metodológica orienta las decisiones sobre la recolección, el análisis y la interpretación de los datos espectrales obtenidos en el estudio.
+	
+	\subsection{Variables de Estudio}
+	
+	\textbf{Variable independiente:} Presencia de \textit{Hemileia vastatrix}, operacionalizada mediante la inoculación controlada de plantas de \textit{C. arabica} con una suspensión de urediniosporas a concentración de $1 \times 10^5$ esp/mL. Esta variable presenta dos niveles: presencia del patógeno (plantas inoculadas, n=40) y ausencia del patógeno (plantas control no inoculadas, n=10).
+	
+	\textbf{Variables dependientes:} Propiedades espectrales de las hojas, medidas a través de: (a) reflectancia difusa en el rango 350--1000 nm (\% de reflectancia), (b) espectro diferencial $\Delta R(\lambda)$ entre hojas infectadas y sanas, (c) índices normalizados ICR, IDE y REF (adimensionales), y (d) tiempo de primera detección de anomalía espectral (días post-inoculación).
+	
+	\textbf{Variables controladas:} Para aislar el efecto de la variable independiente sobre las variables dependientes, se mantienen constantes: la variedad de café (\textit{C. arabica} var. Caturra), la edad de las plantas (3--4 meses), las condiciones ambientales del invernadero (temperatura 18--24°C, humedad relativa $>85\%$, fotoperiodo 12h/12h), el horario de medición (10:00--11:00 AM), la geometría de la fibra óptica (reflectancia difusa a 45°), y la concentración del inóculo ($1 \times 10^5$ esp/mL $\pm 10\%$). Cualquier cambio en estas variables controladas podría introducir ruido o sesgo en la respuesta espectral medida.
+	
+	\subsection{Sistema Espectroscópico y Equipos de Laboratorio}
+	
+	El sistema de adquisición óptica está integrado por un espectrómetro Ocean Optics USB4000 con rango espectral de 350 a 1000 nm y una resolución de 1.5 nm FWHM, seleccionado por su detector CCD Sony ILX511B de 3648 píxeles que permite capturar firmas espectrales de alta resolución necesarias para identificar cambios en la reflectancia asociados a la degradación de clorofilas y carotenoides, tal como se ha establecido en estudios de fisiología vegetal \parencite{lichtenthaler2001}. Como fuente de excitación se emplea una lámpara halógena Ocean Optics HL-2000 de 20 W, cuya estabilidad temporal inferior al 0.1\% por hora garantiza que las variaciones observadas en la reflectancia se deban a las propiedades ópticas de la muestra y no a fluctuaciones de la fuente lumínica. La interfaz se realiza mediante una fibra óptica bifurcada de retrodispersión con configuración 6-around-1 (200 $\mu$m de núcleo, apertura numérica 0.22), diseñada para capturar la interacción de la luz con las estructuras fúngicas y el tejido foliar siguiendo los principios de dispersión de Mie para partículas pequeñas \parencite{bohren1983, vandeHulst1981}.
+	
+	Para la fase de validación biológica y procesamiento de muestras, se emplea un microscopio óptico Olympus CX23 con aumento de 100× y aceite de inmersión, indispensable para la verificación morfológica de las urediniosporas de \textit{H. vastatrix}. Complementariamente, se utiliza una centrífuga de rotor de ángulo fijo con capacidad de hasta 15000 rpm para la sedimentación y lavado de esporas, garantizando suspensiones purificadas con densidades ópticas controladas. La cuantificación del inóculo se realiza mediante una cámara de Neubauer, permitiendo establecer la carga infectiva necesaria para correlacionar la severidad de la roya con los cambios detectados por espectroscopía, siguiendo protocolos ampliamente validados en fitopatología \parencite{Talhinhas2017}.
+	
+	En cuanto a los materiales especializados, se emplean cubetas de cuarzo o PMMA según el rango espectral, así como filtros de nylon de 100 a 40 $\mu$m que pueden sustituirse por doble capa de gasa estéril para el aislamiento de propágulos en condiciones de recursos limitados. Para la calibración del sistema, el estándar de Spectralon con reflectancia superior al 99\% se complementa con el uso de BaSO$_4$ en polvo compactado, cuya reflectancia supera el 95\%, funcionando como un difusor lambertiano casi ideal para modelar las propiedades ópticas de la hoja \parencite{jacquemoud2009}. Asimismo, el uso de surfactantes como Tween o detergente neutro asegura la ruptura de la tensión superficial para una inoculación efectiva, permitiendo que la solución supere las barreras hidrofóbicas de la cutícula del café \parencite{Silva2006, Velasquez2020}.
+	
+	Para la preparación de las suspensiones y la estabilidad biológica de los propágulos se utiliza una solución tampón de PBS (0.01 M, pH 7.4), la cual mantiene el equilibrio osmótico indispensable para preservar la viabilidad de las urediniosporas. Como alternativa económica, puede emplearse una solución salina de NaCl a 8.0 g/L que previene la lisis celular durante los procesos de extracción y lavado. Para superar la hidrofobicidad de la cutícula cerosa de \textit{C. arabica} y asegurar una distribución homogénea del inóculo, se utilizan surfactantes como Tween 80 o Tween 20, cuya tensión superficial puede emularse eficazmente con detergente líquido neutro facilitando la adhesión de las esporas al tejido foliar. El agua destilada con conductividad inferior a 10 $\mu$S/cm garantiza la pureza de las mediciones ópticas, pudiendo sustituirse por agua de lluvia filtrada y hervida en condiciones de campo.
+	
+	\subsection{Obtención y Preparación de Material Biológico}
+	
+	Las urediniosporas de \textit{H. vastatrix} se obtendrán de hojas de \textit{C. arabica} var. Bourbon que muestren esporulación activa, colectadas en la Facultad de Ciencias Agronómicas de la Universidad de El Salvador durante el período de mayor incidencia epidemiológica, comprendido entre septiembre y noviembre. La colecta se realizará en horas de alta humedad relativa (7:00 a 9:00 AM) para maximizar la viabilidad de los propágulos. La identidad morfológica de las esporas colectadas será validada mediante microscopía óptica a 100× atendiendo a dos características diagnósticas descritas en la literatura especializada: la coloración naranja-amarillenta debida a pigmentos carotenoides y las dimensiones celulares en el rango de 15 a 35 $\mu$m \parencite{Cummins2003, Britton1995}.
+	
+	El aislamiento de esporas se ejecutará mediante un protocolo de lavado diferencial. Inicialmente, se sumergirán las hojas colectadas en una solución de PBS (0.01 M, pH 7.4) con Tween 20 al 0.05\% para romper la hidrofobicidad natural de las paredes esporales, facilitando la resuspensión de los propágulos. Subsecuentemente, se realizará una filtración gravitacional a través de gasa estéril con poro de malla de 100 $\mu$m que actúa como tamiz para eliminar detritos foliares de mayor tamaño y material vegetal no deseado. La purificación final se logrará mediante centrifugación diferencial a 3000 rpm durante 5 minutos, recogiendo el pellet y resuspendiendo en agua destilada estéril para obtener una pureza superior al 80\%, según lo reportado en protocolos establecidos para este patosistema \parencite{Silva2006}. Como medida de control de calidad, se realizarán pruebas de viabilidad germinativa incubando una alícuota de la suspensión en agua destilada a 25°C durante 4 a 6 horas, verificando bajo microscopía óptica que emerjan tubos germinativos desde al menos el 70\% de los propágulos. De este modo se asegura que la firma espectral obtenida corresponda a estructuras fisiológicamente activas y no a esporas inviables o degradadas \parencite{Money2016}.
+	
+	La concentración del inóculo preparado se determinará mediante conteo directo en cámara de Neubauer bajo microscopía de luz a 400×, aplicando factores de dilución apropiados para estandarizar la densidad esporular. Como alternativa de estimación rápida en situaciones donde el tiempo sea limitante, se empleará turbidimetría a 600 nm mediante espectrofotómetro para una aproximación basada en densidad óptica de la suspensión, siendo conscientes de que este método proporciona una estimación menos precisa que el conteo directo.
+	
+	Para los estudios de evolución temporal de la infección, se utilizarán plantas jóvenes de \textit{C. arabica} var. Caturra de 3 a 4 meses de edad, cultivadas bajo condiciones controladas de invernadero con temperatura de 18 a 24°C, humedad relativa superior al 85\% y fotoperiodo de 12 horas de luz por 12 horas de oscuridad. Las plantas serán inoculadas por aspersión foliar con la suspensión de esporas a una concentración de $1 \times 10^5$ esporas por mL con una tolerancia del 10\%, concentración validada por cámara de Neubauer previo a la inoculación. Se seguirán protocolos estándar que incluyen una cámara húmeda post-aspersión mediante cobertura plástica durante 48 horas para garantizar condiciones óptimas de germinación e infección \parencite{Talhinhas2017}.
+	
+	Previo al experimento principal, se ejecutará un pre-experimento exploratorio con tres plantas bajo las mismas condiciones ambientales del invernadero para caracterizar la cinética específica de infección en ese entorno, incluyendo la duración de la fase de latencia sin síntomas externos, el día de aparición de los primeros síntomas visibles de clorosis, y la transición hacia la esporulación masiva. Basándose en la cinética observada en este pre-experimento, las 50 plantas del experimento principal se distribuirán de la siguiente manera: 10 plantas en estadio latente (días 0 a 5 post-inoculación), 15 plantas en estadio pre-sintomático (días 6 a 12), 15 plantas en estadio esporulante activo (días 13 a 21), y 10 plantas como controles sistémicos que permitirán medir en hojas adyacentes no inoculadas la posible dispersión de la infección dentro de la planta. Este enfoque estratificado es fundamental para asegurar que el seguimiento temporal de 21 días capture suficientes datos en la fase crítica pre-sintomática, necesaria para validar el potencial de detección temprana propuesto en los objetivos del proyecto.
+	
+	Como estrategia de optimización para condiciones de campo con recursos limitados, se contempla un método alternativo de extracción mediante cepillado seco. El procedimiento consiste en utilizar un pincel de cerdas naturales suave para cepillar directamente sobre las pústulas esporulantes de hojas infectadas, recogiendo mecánicamente los propágulos sin necesidad de soluciones. Este procedimiento debe ejecutarse preferentemente bajo condiciones de alta humedad relativa superior al 70\% para minimizar la dispersión aérea de esporas y asegurar que los propágulos recolectados mantengan su hidratación natural antes de ser resuspendidos en agua destilada estéril. Aunque este método presenta un rendimiento de recuperación inferior en comparación con el lavado diferencial químico (aproximadamente 60\% frente a 80\%), su viabilidad técnica para caracterización espectral ha sido validada experimentalmente, ofreciendo una alternativa robusta y práctica que prescinde de agentes químicos \parencite{Martins2021}.
+	
+	\subsection{Mediciones Espectroscópicas}
+	
+	La adquisición de datos espectrales se realiza tras un período de estabilización térmica de 45 minutos de la fuente halógena HL-2000, tiempo necesario para que la temperatura de la fuente alcance el equilibrio térmico y el flujo fotónico emitido se estabilice, asegurando condiciones constantes durante las mediciones. Los parámetros de operación del espectrómetro se optimizan con un tiempo de integración de 300 a 800 ms, ajustado según la concentración de la muestra para evitar saturación del detector, y un promedio de 10 espectros por muestra que maximiza la relación señal/ruido en el rango útil de 380 a 950 nm, donde la eficiencia cuántica del detector CCD Sony ILX511B es máxima. La calibración del sistema sigue un protocolo riguroso que incluye dos pasos: primero, la sustracción de la corriente oscura del detector medida con la fuente apagada para eliminar ruido instrumental intrínseco; segundo, la normalización con un estándar de reflectancia de referencia, ya sea Spectralon con reflectancia superior al 99\% o BaSO$_4$ compactado con reflectancia superior al 95\%, lo que garantiza la linealidad de la respuesta óptica y permite una cuantificación reproducible de los coeficientes de absorción y dispersión de las muestras biológicas según la teoría de dispersión de Mie \parencite{bohren1983}.
+	
+	\subsubsection{Caracterización de Suspensiones de Esporas}
+	
+	Este procedimiento busca establecer la firma espectral pura de las urediniosporas de \textit{H. vastatrix} en suspensión acuosa, eliminando la influencia del tejido vegetal y permitiendo caracterizar las propiedades ópticas inherentes del patógeno. Se preparará una serie logarítmica de concentraciones que incluye $1\times10^4$, $5\times10^4$, $1\times10^5$, $5\times10^5$ y $1\times10^6$ esporas por mL, manteniendo un volumen constante de 3 mL dentro de cubetas de cuarzo de 10 mm de espesor óptico. La medición se realizará con la fibra óptica en configuración de retrodispersión a 180°, de modo que la radiación de la fuente HL-2000 interactúa con la suspensión y los fotones dispersados por las urediniosporas son recolectados por el detector USB4000.
+	
+	Para garantizar la repetibilidad de las mediciones, se aplicará un pipeteo suave de cinco ciclos previo a cada toma para homogeneizar la suspensión sin generar burbujas de aire que introduzcan picos de dispersión erráticos. Dado que las esporas tienden a sedimentar por gravedad durante el tiempo de medición, se rotará la cubeta 90° cada 30 segundos durante la secuencia de adquisición de espectros. El proceso seguirá un orden de menor a mayor concentración para minimizar la contaminación residual cruzada entre muestras, incluyendo además un blanco de solvente con agua destilada entre cada muestra para verificar la estabilidad de la línea base espectral a lo largo de la sesión.
+	
+	Como complemento, se ejecutará un protocolo de validación diferencial que conecte la firma espectral de suspensiones puras con la manifestación óptica en hojas infectadas naturales. Se colectarán hojas de \textit{C. arabica} var. Bourbon en dos condiciones: hojas sin inocular como control sano y hojas del mismo genotipo con infección confirmada en estadio de esporulación activa. Se medirán espectros de reflectancia difusa a 45° para ambos grupos utilizando la misma geometría empleada en el protocolo de hojas infectadas descrito en la subsección siguiente, garantizando así la comparabilidad directa de los datos. Para cada hoja, se tomarán mediciones en tres posiciones diferentes evitando las venas principales para asegurar la representatividad del mesófilo, registrando cinco espectros independientes por posición. Se calcularán las reflectancias promedio por hoja y posteriormente el espectro diferencial restando la reflectancia promedio de hojas sanas de la reflectancia promedio de hojas infectadas, según la ecuación:
+	
+	\begin{equation}
+		\Delta R(\lambda) = R_{\text{infectada}}(\lambda) - R_{\text{sana}}(\lambda)
+	\end{equation}
+	
+	Se identificarán las bandas de máxima variación diferencial en el espectro diferencial foliar y se compararán directamente con las bandas de máxima absorción o reflexión observadas en el protocolo de suspensiones puras. Las coincidencias en longitudes de onda de máxima variación entre ambos protocolos validarán que la firma espectral caracterizada en suspensiones se manifiesta efectivamente en hojas infectadas naturales, confirmando que los cambios ópticos observados durante el seguimiento temporal son atribuibles específicamente a los propágulos de \textit{H. vastatrix} y no a artefactos de degradación foliar inespecífica, senescencia o variación fisiológica basal.
+	
+	\subsubsection{Seguimiento Temporal en Hojas Infectadas}
+	
+	La caracterización del progreso de la enfermedad en el hospedador se realizará mediante un seguimiento temporal diario desde el día cero previo a la inoculación hasta el día 21 post-inoculación. La geometría de medición consistirá en una sonda de contacto configurada para reflectancia difusa a 45°, un ángulo óptimo para mitigar la componente de reflexión especular generada por la cutícula cerosa de \textit{C. arabica} y asegurar que la señal provenga de la interacción de la luz con el mesófilo y las estructuras fúngicas internas.
+	
+	En cada sesión, se registrarán tres posiciones críticas por unidad experimental: el área central inoculada, un área adyacente no inoculada que actúa como control sistémico para detectar posible dispersión de la infección, y una hoja control de una planta sana del mismo genotipo. Se tomarán cinco espectros independientes por posición con un tiempo de integración de 300 ms, lo que permite capturar la evolución de la firma espectral durante los estadios de latencia, pre-sintomático y esporulante.
+	
+	Para maximizar el control sobre variables confundidoras ambientales, todas las mediciones espectroscópicas se realizarán dentro de una ventana horaria fija de 10:00 a 11:00 hora local, correspondiente al período de máxima actividad fotosintética y mínima variación circadiana en plantas C3. Las muestras serán aclimatadas a oscuridad durante 30 minutos previo a cada medición para minimizar variaciones en la fluorescencia de clorofila residual y permitir la estabilización del sistema fotosintético. En paralelo, se mantendrá una cohorte de control negativo compuesta por cinco plantas no inoculadas que serán medidas bajo el mismo protocolo horario y de aclimatación durante los 21 días completos, permitiendo cuantificar cambios espectrales debidos exclusivamente a la senescencia foliar natural y a la variación fisiológica basal en ausencia de infección.
+	
+	Los cambios espectrales inducidos específicamente por \textit{H. vastatrix} se identificarán mediante comparación directa entre tres grupos: la reflectancia de hojas inoculadas en fase sintomática, la reflectancia de hojas inoculadas en fase pre-sintomática y la reflectancia del grupo control negativo en el mismo día post-inoculación. Se documentarán las diferencias espectrales observadas en términos de máximos y mínimos de reflectancia y corrimientos en bandas críticas, sin realizar sustracción algebraica, lo que permite evaluar visualmente cómo divergen los espectros de hojas infectadas respecto a los controles.
+	
+	Es importante aclarar que no se profundizar\'a con teor\'ia de Series de Tiempo para el seguimiento temporal de las hojas infectadas debido a que se sale fuera de los objetivos establecidos en este investivagaci\'on. En su lugar, para caracterizar la evolución temporal de los índices espectrales durante los 21 días de seguimiento, se ajustará un modelo de regresión lineal por grupos. La pendiente de la recta de regresión para el grupo pre-sintomático se comparará con la del grupo sano mediante una prueba de comparación de pendientes. Un cambio significativo en la pendiente (p < 0.05) indicará el inicio de la ventana de detección pre-sintomática. Adicionalmente, se calculará el coeficiente de determinación R$^2$ para evaluar la magnitud de la tendencia temporal.
+	
+	\subsubsection{Desarrollo de Índices Espectrales}
+	
+	El procesamiento de los datos espectrales se fundamenta en el cálculo de índices normalizados que combinan bandas espectrales específicamente asociadas a cambios ópticos inducidos por la presencia de \textit{H. vastatrix}. La estrategia consiste en identificar qué combinaciones de longitudes de onda en el rango 350 a 1000 nm muestran la máxima discriminación entre hojas sanas e infectadas, facilitando así la detección temprana mediante análisis espectral simple.
+	
+	Se proponen tres índices espectrales basados en propiedades biofísicas conocidas de los pigmentos del patógeno y en los cambios de la fisiología foliar inducidos por la infección. El Índice de Carotenoides de Roya (ICR) está diseñado para detectar la absorción específica de los pigmentos carotenoides del hongo en la región azul-verde de 450 a 570 nm, bandas donde los carotenoides de \textit{H. vastatrix} muestran máxima absorción según lo reportado en la literatura especializada. Se define como:
+	
+	\begin{equation}
+		\text{ICR} = \frac{R_{570} - R_{450}}{R_{570} + R_{450}}
+	\end{equation}
+	
+	donde $R_{570}$ y $R_{450}$ son los valores de reflectancia en las longitudes de onda de 570 nm y 450 nm respectivamente. Un incremento en ICR indica una menor absorción en la región azul-verde, lo que se asocia con la presencia de pigmentos fúngicos.
+	
+	El Índice de Detección Temprana (IDE) combina cambios en el red-edge, que es la región de transición entre la absorción y la reflexión de la clorofila comprendida entre 680 y 750 nm, con cambios en la región visible, captando así la degradación temprana de clorofila antes de la manifestación visual de clorosis. Se define como:
+	
+	\begin{equation}
+		\text{IDE} = \frac{R_{550} - R_{680}}{R_{700}} - \frac{R_{450}}{R_{550}}
+	\end{equation}
+	
+	El Ratio de Estrés Foliar (REF) relaciona la reflectancia del infrarrojo cercano en 750 nm, sensible a la estructura celular, con bandas de absorción de clorofila en 680 nm e indicadores de pigmentos carotenoides en 570 nm, integrando múltiples señales de daño tisular. Se define como:
+	
+	\begin{equation}
+		\text{REF} = \frac{R_{750}}{R_{680}} \times \frac{R_{570}}{R_{750}}
+	\end{equation}
+	
+	Para cada índice, se documentarán los valores medios y las desviaciones estándar obtenidos en cada estadio de infección (sano, latente, pre-sintomático y esporulante), permitiendo caracterizar cómo varían estos índices a lo largo de la progresión de la enfermedad. Se identificarán los umbrales de separación entre estadios basándose en los datos experimentales observados, específicamente el valor mínimo de ICR, IDE o REF que distingue estadísticamente, con un nivel de significancia de p < 0.05, una cohorte infectada de una cohorte sana. Estos umbrales serán puramente descriptivos, derivados de los datos experimentales propios, y no serán optimizados mediante algoritmos de modelado.
+	
+	\subsubsection{Validación, Análisis Estadístico y Criterios de Desempeño}
+	
+	La validación de los resultados se fundamenta en controles experimentales rigurosos y en procedimientos estadísticos paramétricos y no paramétricos. Para garantizar la estabilidad instrumental, se mide un blanco de solvente (agua destilada) entre cada muestra, verificando que la línea base espectral no presente desviaciones. Cada cinco mediciones consecutivas, se recalibra el sistema óptico con el estándar de reflectancia de BaSO$_4$ compactado, mitigando la deriva térmica del detector CCD. Se toman cinco espectros independientes por cada posición y planta, lo que permite calcular el coeficiente de variación intra-técnica como la desviación estándar de esos cinco espectros dividida por su media, multiplicada por cien. Un índice se considera reproducible técnicamente si este coeficiente es inferior al 10\%.
+	
+	El análisis de comparación entre grupos experimentales (hojas sanas, latentes, pre-sintomáticas y esporulantes) se realiza mediante dos enfoques complementarios. En primer lugar, se aplica la prueba de Shapiro-Wilk para evaluar la normalidad de los datos de cada índice dentro de cada grupo. Si los datos cumplen el supuesto de normalidad con un valor p superior a 0.05 en la prueba de Shapiro-Wilk, se emplea un análisis de varianza de una vía (ANOVA). El estadístico F de ANOVA se calcula como la varianza entre grupos dividida por la varianza intra-grupos, donde la varianza entre grupos cuantifica las diferencias entre las medias de cada estadio de infección y la varianza intra-grupos cuantifica la variabilidad dentro de cada grupo. Si el valor de F supera el valor crítico correspondiente a un nivel de significancia de 0.05, se rechaza la hipótesis nula de igualdad de medias entre todos los grupos. Posteriormente, se aplica la prueba post-hoc de Tukey HSD para identificar qué pares específicos de grupos, por ejemplo sano frente a pre-sintomático, presentan diferencias significativas, ajustando el error tipo I para comparaciones múltiples.
+	
+	Si los datos no cumplen el supuesto de normalidad, con un valor p inferior a 0.05 en la prueba de Shapiro-Wilk, se emplea la prueba no paramétrica de Kruskal-Wallis. El estadístico H de Kruskal-Wallis se calcula a partir de la suma de rangos asignados a las observaciones de cada grupo, comparando la distribución de rangos entre grupos. El valor de H se compara con una distribución chi-cuadrado con tres grados de libertad, correspondientes a los cuatro grupos experimentales. Si H supera el valor crítico para un nivel de significancia de 0.05, se rechaza la hipótesis nula de que todos los grupos provienen de la misma distribución. Para identificar qué pares de grupos difieren significativamente, se aplica la prueba post-hoc de Dunn con corrección de Bonferroni, donde el nivel de significancia ajustado es 0.05 dividido por el número de comparaciones realizadas.
+	
+	Para cada índice, el umbral que discrimina hojas sanas de infectadas se define como la media del índice en la cohorte de hojas sanas del control negativo más una desviación estándar de ese mismo grupo. Se considera que un índice tiene potencial para detección temprana si se cumplen tres condiciones: que la diferencia entre el grupo sano y el grupo pre-sintomático sea estadísticamente significativa con un valor p inferior a 0.05 en la prueba ANOVA o Kruskal-Wallis correspondiente, que el valor medio del índice en el grupo pre-sintomático supere el umbral calculado, y que el coeficiente de variación intra-técnica sea inferior al 10\%. La ventana de detección pre-sintomática se identifica como el día post-inoculación más temprano en el que el límite inferior del intervalo de confianza del 95\% del grupo infectado no se solapa con el límite superior del intervalo de confianza del grupo sano.
+	
+	La reproducibilidad entre réplicas biológicas, es decir entre plantas diferentes dentro del mismo estadio infeccioso, se cuantifica mediante el coeficiente de variación inter-plantas, calculado como la desviación estándar de los valores del índice entre plantas dividida por la media de esos valores, multiplicada por cien. Se considera aceptable una reproducibilidad biológica con un coeficiente de variación inter-plantas inferior al 15\%. Valores superiores indican variabilidad biológica inherente, como diferencias en susceptibilidad genética o carga infecciosa dispar, que debe ser documentada en los resultados como una limitación del estudio.
+	
+	Finalmente, la verificación de la presencia del patógeno en el sitio de medición espectral se realizará mediante observación microscópica directa. En los días 0, 7, 14 y 21 post-inoculación, se seleccionarán tres plantas por punto temporal, totalizando 12 plantas, de las cuales se extraerán discos foliares de 5 mm de diámetro desde el área que fue medida espectroscópicamente. Estos discos se montarán directamente en portaobjetos con una gota de agua destilada y se observarán bajo microscopía óptica a 400× para verificar la presencia de urediniosporas o estructuras germinativas en la superficie foliar. En caso de duda, se realizarán cortes transversales manuales con navaja de afeitar para examinar el interior del tejido. No se ejecutarán protocolos histológicos complejos como fijación química, inclusión en parafina o microtomía, ya que el objetivo es únicamente confirmar la presencia del patógeno en el sitio de medición espectral y no caracterizar su anatomía interna detallada. La coincidencia temporal entre la primera anomalía espectral detectada y la primera evidencia microscópica de estructuras fúngicas validará que los cambios ópticos observados responden efectivamente a la colonización por \textit{H. vastatrix}.
+	
+	
+	
+	\subsubsection{Validación, Análisis Estadístico y Criterios de Desempeño}
+	
+	\paragraph{Formalismo de prueba de hipótesis.}
+	Para el cumplimiento del Objetivo Específico 3, se formula el siguiente contraste de hipótesis. Sea $\mu_s$, $\mu_l$, $\mu_{ps}$ y $\mu_{sp}$ los valores poblacionales de un índice espectral (ICR, IDE o REF) para los grupos de hojas sanas, latentes, pre-sintomáticas y esporulantes, respectivamente. La hipótesis nula plantea que no existen diferencias significativas entre los grupos:
+	
+	\begin{equation}
+		H_0: \mu_s = \mu_l = \mu_{ps} = \mu_{sp}
+	\end{equation}
+	
+	La hipótesis alternativa postula que al menos un par de grupos presenta diferencias significativas:
+	
+	\begin{equation}
+		H_1: \exists i \neq j \text{ tal que } \mu_i \neq \mu_j
+	\end{equation}
+	
+	El nivel de significancia establecido es $\alpha = 0.05$, que representa la probabilidad de cometer un error Tipo I (rechazar falsamente la hipótesis nula). El poder estadístico deseado es de al menos $1-\beta = 0.80$, lo que justifica el tamaño muestral de $n=75$ mediciones técnicas por grupo (15 plantas × 5 espectros por planta) \citep{montgomery2017}.
+	
+	\paragraph{Verificación de supuestos.}
+	Previo a la aplicación de pruebas paramétricas, se evaluará el supuesto de normalidad mediante la prueba de Shapiro-Wilk para cada grupo y cada índice. El estadístico de prueba se calcula como:
+	
+	\begin{equation}
+		W = \frac{\left( \sum_{i=1}^{n} a_i x_{(i)} \right)^2}{\sum_{i=1}^{n} (x_i - \bar{x})^2}
+	\end{equation}
+	
+	donde $x_{(i)}$ son los estadísticos de orden, $a_i$ son coeficientes tabulados en función del tamaño muestral, y $n$ es el número de observaciones por grupo ($n=75$). Si el valor p asociado a $W$ es superior a 0.05, no se rechaza la hipótesis de normalidad. Adicionalmente, se verificará la homocedasticidad mediante la prueba de Levene, que compara las varianzas entre grupos. Si los supuestos de normalidad y homocedasticidad se cumplen, se procederá con el análisis paramétrico; en caso contrario, se emplearán métodos no paramétricos.
+	
+	\paragraph{Análisis paramétrico: ANOVA y prueba post-hoc de Tukey.}
+	Cuando los supuestos de normalidad y homocedasticidad sean satisfechos, se aplicará un análisis de varianza de una vía (ANOVA) para comparar las medias de los cuatro grupos experimentales. El modelo estadístico subyacente es:
+	
+	\begin{equation}
+		X_{ij} = \mu + \tau_j + \varepsilon_{ij}
+	\end{equation}
+	
+	donde $X_{ij}$ es el valor del índice para la observación $i$ en el grupo $j$, $\mu$ es la media global, $\tau_j$ es el efecto del grupo $j$ (con $j = 1, \dots, 4$ correspondiente a sano, latente, pre-sintomático y esporulante), y $\varepsilon_{ij}$ es el error experimental asumido independiente y normalmente distribuido con media cero y varianza constante $\sigma^2$. El estadístico de prueba F se calcula como:
+	
+	\begin{equation}
+		F = \frac{MS_{\text{entre}}}{MS_{\text{intra}}} = \frac{\frac{\sum_{j=1}^{k} n_j (\bar{X}_j - \bar{X})^2}{k-1}}{\frac{\sum_{j=1}^{k} \sum_{i=1}^{n_j} (X_{ij} - \bar{X}_j)^2}{N-k}}
+	\end{equation}
+	
+	donde $k=4$ grupos, $N=300$ observaciones totales, $n_j=75$ observaciones por grupo, $\bar{X}_j$ es la media del grupo $j$, y $\bar{X}$ es la media global. El estadístico F se compara con el valor crítico $F_{\text{crítico}}(3, 296; \alpha=0.05) \approx 2.60$. Si $F_{\text{calculado}} > F_{\text{crítico}}$, se rechaza la hipótesis nula.
+	
+	Para identificar qué pares específicos de grupos presentan diferencias significativas, se aplicará la prueba post-hoc de Tukey HSD (Honestly Significant Difference). El estadístico de Tukey se define como:
+	
+	\begin{equation}
+		HSD = q_{\alpha}(k, gl_{\text{intra}}) \times \sqrt{\frac{MS_{\text{intra}}}{n}}
+	\end{equation}
+	
+	donde $q_{\alpha}(k, gl_{\text{intra}})$ es el valor crítico de la distribución de rango estudentizado. Para $\alpha=0.05$, $k=4$ y $gl_{\text{intra}}=296$, se tiene $q \approx 3.63$. Un par de grupos $i$ y $j$ presenta diferencias significativas si $|\bar{X}_i - \bar{X}_j| > HSD$. La comparación de mayor interés para la detección pre-sintomática es aquella entre el grupo sano y el grupo pre-sintomático.
+	
+	\paragraph{Análisis no paramétrico: Kruskal-Wallis y prueba post-hoc de Dunn.}
+	Si los supuestos de normalidad no se cumplen (p $\leq$ 0.05 en la prueba de Shapiro-Wilk para al menos un grupo), se empleará la prueba no paramétrica de Kruskal-Wallis, que compara las medianas entre grupos. El estadístico H se calcula como:
+	
+	\begin{equation}
+		H = \frac{12}{N(N+1)} \sum_{j=1}^{k} \frac{R_j^2}{n_j} - 3(N+1)
+	\end{equation}
+	
+	donde $R_j$ es la suma de rangos asignados a las observaciones del grupo $j$. El estadístico H se distribuye aproximadamente como una $\chi^2$ con $k-1 = 3$ grados de libertad. Se rechaza $H_0$ si $H_{\text{calculado}} > \chi^2_{3;0.05} = 7.815$.
+	
+	Para las comparaciones post-hoc, se aplica la prueba de Dunn. Dado que se realizan $m = k(k-1)/2 = 6$ comparaciones entre pares de grupos, se emplea la corrección de Bonferroni para controlar el error Tipo I en comparaciones múltiples. El nivel de significancia ajustado es:
+	
+	\begin{equation}
+		\alpha_{\text{ajustado}} = \frac{\alpha}{m} = \frac{0.05}{6} \approx 0.00833
+	\end{equation}
+	
+	El estadístico z de Dunn para el par de grupos $i$ y $j$ es:
+	
+	\begin{equation}
+		z = \frac{|\bar{R}_i - \bar{R}_j|}{\sqrt{\frac{N(N+1)}{12} \left( \frac{1}{n_i} + \frac{1}{n_j} \right)}}
+	\end{equation}
+	
+	donde $\bar{R}_i$ y $\bar{R}_j$ son los rangos promedio de cada grupo. Se rechaza $H_0$ para ese par si el valor p ajustado es inferior a 0.05, lo que equivale aproximadamente a $z > 2.64$.
+	
+	\paragraph{Definición del umbral de detección.}
+	Para cada índice espectral, el umbral que discrimina una hoja sana de una hoja posiblemente infectada se define con significado estadístico como:
+	
+	\begin{equation}
+		\text{Umbral} = \bar{X}_{\text{sano}} + 1.96 \times \sigma_{\text{sano}}
+	\end{equation}
+	
+	donde $\bar{X}_{\text{sano}}$ es la media del índice en el grupo control negativo (hojas sanas no inoculadas, $n=75$ mediciones) y $\sigma_{\text{sano}}$ es su desviación estándar. El factor 1.96 corresponde al percentil 97.5\% de la distribución normal estándar, estableciendo el límite superior del intervalo de confianza del 95\% para la media poblacional del grupo sano. Bajo el supuesto de normalidad, la probabilidad de que una observación de una planta sana supere este umbral por azar es del 2.5\% (error Tipo I unilateral). La regla de clasificación resultante es:
+	
+	\begin{equation}
+		\text{Clasificación} = 
+		\begin{cases}
+			\text{Sana} & \text{si } X \leq \bar{X}_{\text{sano}} + 1.96\sigma_{\text{sano}} \\
+			\text{Posiblemente infectada} & \text{si } X > \bar{X}_{\text{sano}} + 1.96\sigma_{\text{sano}}
+		\end{cases}
+	\end{equation}
+	
+	\paragraph{Criterios de éxito para el Objetivo Específico 3.}
+	El Objetivo Específico 3 se considerará cumplido si se satisfacen simultáneamente tres condiciones. Primera, al menos dos de los tres índices propuestos (ICR, IDE, REF) presentan una diferencia estadísticamente significativa entre el grupo sano y el grupo pre-sintomático, con un valor p inferior a 0.05 en la prueba ANOVA o Kruskal-Wallis correspondiente, y confirmada por la prueba post-hoc de Tukey o Dunn según corresponda. Segunda, el coeficiente de variación intra-técnica, calculado como $\text{CV}_{\text{intra}} = (\sigma_{\text{5 espectros}} / \bar{X}_{\text{5 espectros}}) \times 100\%$, es inferior al 10\% para esos índices, garantizando su reproducibilidad técnica. Tercera, la ventana de detección pre-sintomática, definida como la diferencia temporal entre el primer día en que el índice supera el umbral establecido y el día de aparición de síntomas visibles (clorosis), es de al menos 3 días.
+	
+	\paragraph{Riesgos de error en la inferencia.}
+	El nivel de significancia $\alpha = 0.05$ implica un riesgo del 5\% de cometer un error Tipo I (declarar que un índice detecta la infección cuando en realidad no existe diferencia real). Este riesgo se considera aceptable en estudios exploratorios como el presente, donde se prioriza la sensibilidad sobre la especificidad \citep{Gold2020}. El error Tipo II (no detectar una diferencia real) se controla mediante el tamaño muestral ($n=75$ por grupo), que proporciona un poder estadístico estimado de al menos $1-\beta = 0.80$ para detectar diferencias de magnitud moderada entre grupos \citep{montgomery2017}. La corrección de Bonferroni en las comparaciones múltiples protege contra la inflación del error Tipo I, aunque reduce ligeramente el poder estadístico al establecer $\alpha_{\text{ajustado}} = 0.0083$ para cada comparación individual.
+	
+	\paragraph{Identificación de la ventana de detección pre-sintomática.}
+	Para cada índice y cada día $t$ post-inoculación, se calculará el estadístico de prueba correspondiente (F para ANOVA, H para Kruskal-Wallis) y su valor p asociado para la comparación entre el grupo sano y el grupo de plantas en ese día específico. El día de primera detección, $t_{\text{primera anomalía}}$, se define como el día más temprano en el que se cumplen dos condiciones: (1) el valor p es inferior a 0.05, indicando diferencia estadísticamente significativa, y (2) el valor medio del índice para las plantas infectadas supera el umbral definido como $\bar{X}_{\text{sano}} + 1.96\sigma_{\text{sano}}$. Una vez identificado $t_{\text{primera anomalía}}$, la ventana de detección pre-sintomática se calcula como $\Delta t = t_{\text{primera anomalía}} - t_{\text{primer síntoma visible}}$, donde $t_{\text{primer síntoma visible}}$ es el día en que se observa clorosis visible en al menos el 50\% de las plantas del grupo esporulante.
+	
+	
+	\subsection{Protocolo de Reproducibilidad de la Firma Espectral entre Lotes Independientes de Esporas}
+	
+	Para garantizar que los biomarcadores espectrales identificados reflejan propiedades intrínsecas de \textit{H. vastatrix} y no artefactos de un lote específico de esporas, se ejecutarán mediciones de firma espectral en dos colectas independientes realizadas en fechas diferentes dentro del período epidemiológico (septiembre--noviembre). La primera colecta se realizará durante la primera quincena de octubre y la segunda durante la última quincena de octubre o primera de noviembre, evitando así un intervalo mayor a 30 días que podría introducir variabilidad estacional en la composición de pigmentos del hongo.
+	
+	Para cada colecta, se seguirá idéntico protocolo de obtención, aislamiento y purificación de esporas, así como el mismo procedimiento de adquisición espectroscópica de suspensiones en las cinco concentraciones logarítmicas. Los espectros diferenciales $\Delta R(\lambda)$ obtenidos en ambas colectas serán comparados mediante superposición visual de las curvas para evaluar coincidencia cualitativa de las bandas de máxima variación. Adicionalmente, se calculará el coeficiente de correlación de Pearson entre los vectores espectrales de Colecta 1 y Colecta 2 en el rango 380--950 nm, donde la eficiencia cuántica del detector CCD es máxima. La correlación de Pearson se calcula como:
+	
+	\begin{equation}
+		r = \frac{\sum_{i=1}^{n} (x_i - \overline{x})(y_i - \overline{y})}{\sqrt{\sum_{i=1}^{n} (x_i - \overline{x})^2} \sqrt{\sum_{i=1}^{n} (y_i - \overline{y})^2}}
+	\end{equation}
+	
+	donde $x_i$ e $y_i$ son los valores de reflectancia en la longitud de onda $i$ para las colectas 1 y 2 respectivamente, y $n$ es el número de longitudes de onda en el rango analizado. Se considerará que la firma espectral es reproducible si se cumplen dos condiciones: que el coeficiente de correlación de Pearson sea superior a 0.85, indicando alta covarianza lineal entre ambas curvas, y que el desplazamiento de los máximos de absorción o reflexión sea inferior a 10 nm, determinado visualmente a partir de los gráficos superpuestos.
+	
+	En caso de que no sea posible realizar la medición espectroscópica el mismo día de la colecta, las esporas purificadas se preservarán en suspensión en PBS (0.01 M, pH 7.4) a 4°C en oscuridad por un máximo de 24 horas. No se utilizarán esporas almacenadas por más de 24 horas, ya que estudios previos indican degradación de pigmentos carotenoides en ventanas superiores, lo que alteraría artificialmente la firma espectral \parencite{Talhinhas2017}.
+	
+	\subsection{Control de Errores y Fuentes de Incertidumbre}
+	
+	Se identifican errores sistemáticos críticos vinculados a la naturaleza del sistema espectroscópico USB4000 que pueden afectar la calidad de las mediciones. La deriva térmica del detector CCD, causada por fluctuaciones en la temperatura ambiente del laboratorio, puede desplazar la línea base del espectro medido a lo largo de sesiones prolongadas de adquisición de datos. Complementariamente, la inestabilidad fotométrica de la lámpara halógena HL-2000, aunque mínima según las especificaciones del fabricante, puede introducir variabilidad en la intensidad de iluminación entre muestras consecutivas. Estos errores sistemáticos se mitigan mediante dos procedimientos: la sustracción de la corriente oscura del detector antes de cada sesión de medición y la recalibración periódica del sistema óptico con el estándar de reflectancia de BaSO$_4$ compactado cada cinco mediciones, garantizando que la respuesta instrumental se mantenga dentro de márgenes aceptables de estabilidad \parencite{lichtenthaler2001}.
+	
+	Las limitaciones biológicas incluyen la degradación fotoquímica de las urediniosporas durante el almacenamiento post-colecta, proceso que puede alterar las concentraciones de pigmentos carotenoides y afectar consecuentemente los coeficientes de absorción óptica medidos. Por este motivo, el material biológico debe procesarse en un tiempo inferior a 4 horas posterior a la colecta en campo, estableciendo un límite temporal que asegure que las propiedades ópticas medidas reflejen el estado fisiológico real de los propágulos en el momento de la recolección \parencite{Talhinhas2017}. Adicionalmente, la variabilidad intrínseca en la susceptibilidad de plantas individuales y la heterogeneidad en las condiciones microclimáticas del invernadero pueden introducir ruido biológico; este último se minimiza mediante la estandarización de los protocolos de inoculación, el control de temperatura y humedad relativa en la cámara de cultivo, y la réplica técnica con cinco espectros por posición.
+	
+	Finalmente, se reconocen fuentes de incertidumbre relacionadas con la geometría de medición y la interacción luz-muestra. En el caso de las suspensiones de esporas, la sedimentación gravitacional de los propágulos durante el tiempo de medición puede causar variaciones en la concentración efectiva dentro de la cubeta; esto se controla mediante rotación periódica de la cubeta cada 30 segundos y pipeteo suave previo a cada medición. En las mediciones de hojas, la heterogeneidad espacial de la infección y la curvatura foliar natural pueden afectar el ángulo de incidencia de la luz; se minimiza esta incertidumbre fijando la geometría de medición a reflectancia difusa de 45° y seleccionando áreas foliares planas y representativas \parencite{Gold2020}.
+	
+	
+	\section{Resultados Esperados}
+	
+	Se espera obtener cuatro productos científicos directos. En primer lugar, la firma espectral pura de las urediniosporas de \textit{H. vastatrix}, consistente en curvas de reflectancia diferencial $\Delta R(\lambda)$ en el rango 350--1000 nm para suspensiones acuosas en cinco concentraciones logarítmicas ($1\times10^4$, $5\times10^4$, $1\times10^5$, $5\times10^5$, $1\times10^6$ esp/mL). Esta firma será validada mediante dos colectas independientes realizadas en fechas diferentes; se calculará el coeficiente de correlación de Pearson entre los vectores espectrales de ambas colectas en el rango 380--950 nm, considerándose reproducible si $r > 0.85$ y el desplazamiento de las bandas de máxima absorción es inferior a 10 nm.
+	
+	En segundo lugar, se generará un mapa temporal de la evolución de los índices espectrales ICR, IDE y REF durante los 21 días post-inoculación. Para cada día y cada índice, se calcularán la media y la desviación estándar por grupo experimental (sano, latente, pre-sintomático, esporulante). Se identificará el día específico en que cada índice muestra la primera desviación estadísticamente significativa respecto al grupo control sano, estableciendo así la ventana de detección pre-sintomática.
+	
+	En tercer lugar, se derivarán umbrales cuantitativos de discriminación para cada índice según la fórmula $\text{Umbral} = \overline{X}_{\text{sano}} + 1 \times \sigma_{\text{sano}}$, donde $\overline{X}_{\text{sano}}$ es la media del índice en hojas sanas (n=75 mediciones técnicas) y $\sigma_{\text{sano}}$ su desviación estándar. Se documentarán los coeficientes de variación intra-técnica (cinco espectros de la misma posición foliar) e inter-plantas (entre réplicas biológicas del mismo estadio), esperándose valores inferiores al 10\% y 15\% respectivamente.
+	
+	En cuarto lugar, se verificará la sincronía temporal entre la primera anomalía espectral detectable y la presencia confirmada de estructuras fúngicas. Para ello, en los días 0, 7, 14 y 21 post-inoculación se seleccionarán tres plantas por punto temporal (12 plantas en total), de las cuales se extraerán discos foliares de 5 mm de diámetro desde el área medida espectroscópicamente. Estos discos se montarán directamente en portaobjetos con una gota de agua destilada y se observarán bajo microscopía óptica a 400$\times$ para verificar la presencia de urediniosporas o estructuras germinativas en la superficie o en el interior del tejido (previa realización de cortes transversales manuales con navaja de afeitar). No se realizarán protocolos histológicos complejos (fijación, inclusión en parafina, microtomía), ya que el objetivo es únicamente confirmar la presencia del patógeno en el sitio de medición espectral, no caracterizar su anatomía.
+	
+	El estudio se considerará exitoso si se cumplen tres criterios: que al menos dos de los tres índices propuestos muestren diferencia estadísticamente significativa (p < 0.05) entre hojas sanas y hojas en fase pre-sintomática; que el coeficiente de variación intra-técnica sea inferior al 10\% para dichos índices; y que la diferencia temporal entre la primera detección espectral y la manifestación visual de síntomas (clorosis visible) sea de al menos 3 días. Los resultados serán específicos a las condiciones controladas del invernadero UES (temperatura 18--24°C, humedad relativa >85\%, var. Caturra), y su extrapolación a otros contextos requerirá validación independiente.
+	
+	
+	% ============================================================
+	%  SUPUESTOS Y RIESGOS
+	% ============================================================
+	\section{Supuestos y Riesgos}
+	
+	\subsection{Supuestos del Estudio}
+	
+	La presente investigación se fundamenta en los siguientes supuestos teóricos, metodológicos y prácticos:
+	
+	\begin{enumerate}
+		\item \textbf{Supuesto de estabilidad espectral del patógeno:} Se asume que las propiedades espectrales de las urediniosporas de \textit{H. vastatrix} (reflectancia, absorbancia y coeficientes de extinción) son intrínsecas y estables durante el período de medición (4 horas post-colecta), y que no existen variaciones significativas en la composición de pigmentos carotenoides entre diferentes colectas realizadas en el mismo período epidemiológico (septiembre--noviembre) en la región de estudio.
+		
+		\item \textbf{Supuesto de homogeneidad biológica:} Se asume que las plantas de \textit{C. arabica} var. Bourbon de 3--4 meses de edad, cultivadas bajo condiciones controladas de invernadero, presentan una respuesta fisiológica homogénea a la inoculación con \textit{H. vastatrix}, con baja variabilidad inter-individual en la susceptibilidad y en la cinética de progresión de la infección.
+		
+		\item \textbf{Supuesto de linealidad instrumental:} Se asume que el sistema espectroscópico (USB4000 + HL-2000) opera en el régimen lineal del detector CCD, de modo que la señal de reflectancia medida es directamente proporcional a la radiancia incidente, sin efectos de saturación o no linealidad en el rango de intensidades esperado (reflectancia 5\%--80\%).
+		
+		\item \textbf{Supuesto de representatividad muestral:} Se asume que las mediciones realizadas en tres posiciones por hoja y cinco espectros por posición capturan adecuadamente la variabilidad espacial de la infección y la heterogeneidad del tejido foliar, y que la media de estas mediciones es un estimador insesgado de la firma espectral verdadera de la hoja.
+		
+		\item \textbf{Supuesto de ausencia de interferentes espectrales:} Se asume que en el rango 350--1000 nm no existen interferencias espectrales significativas provenientes de compuestos foliares no considerados (flavonoides, antocianinas, ceras epicuticulares) que puedan solaparse con la firma de los carotenoides fúngicos y confundir la detección.
+	\end{enumerate}
+	
+	\subsection{Riesgos y Estrategias de Mitigación}
+	
+	Se identifican los siguientes riesgos técnicos, biológicos y logísticos, junto con las estrategias para mitigarlos:
+	
+	\begin{table}
+		%\centering
+		\caption{Riesgos y estrategias de mitigación}
+		\label{tab:riesgos}
+		\begin{tabular}{p{0.1\linewidth}p{0.4\linewidth}p{0.45\linewidth}}
+			\toprule
+			\textbf{Categoría} & \textbf{Riesgo identificado} & \textbf{Estrategia de mitigación} \\
+			\midrule
+			Técnico & Deriva térmica del detector CCD durante sesiones prolongadas de medición, introduciendo error sistemático en la línea base espectral. & Recalibración con estándar de BaSO$_4$ cada 5 mediciones; sustracción de corriente oscura antes de cada sesión; monitoreo de temperatura ambiente. \\
+			\midrule
+			Técnico & Sedimentación de esporas en cubeta durante la medición de suspensiones, causando variaciones en la concentración efectiva y en la señal de reflectancia. & Rotación manual de cubeta cada 30 segundos; pipeteo suave de 5 ciclos previo a cada medición; uso de agitador magnético de baja velocidad. \\
+			\midrule
+			Biológico & Degradación fotoquímica de carotenoides en esporas almacenadas por más de 4 horas post-colecta, alterando la firma espectral. & Procesamiento de esporas en un tiempo $<$ 4 horas; almacenamiento a 4°C en oscuridad en PBS (0.01 M, pH 7.4) por máximo 24 horas si es indispensable. \\
+			\midrule
+			Biológico & Variabilidad en la viabilidad de esporas entre colectas ($<70\%$ de germinación), lo que implicaría que la firma espectral corresponde a esporas muertas o degradadas. & Prueba de germinación previa a cada experimento; solo se utilizan lotes con fracción germinada $\geq 70\%$; descarte de lotes que no cumplan el umbral. \\
+			\midrule
+			\newpage
+			Biológico & Contaminación cruzada entre plantas control y plantas inoculadas por dispersión aérea de esporas en el invernadero. & Mantenimiento de plantas control en cámara separada o en extremo opuesto del invernadero con barrera física (malla anti-áfidos); cambio de guantes entre manipulación de grupos. \\
+
+			\midrule
+			Logístico & Indisponibilidad de hojas de \textit{C. arabica} con esporulación activa en el período de colecta (septiembre--noviembre) debido a condiciones climáticas atípicas o manejo agronómico. & Identificación de sitios de colecta alternativos (FACIAES, fincas experimentales, jardines botánicos); plan de contingencia con colecta en diciembre si es necesario. \\
+			\midrule
+			Logístico & Fallo del espectrómetro o de la fuente halógena durante el período de mediciones, interrumpiendo la adquisición de datos. & Disponibilidad de espectrómetro de respaldo (Ocean Optics STS-VIS) y lámpara halógena de repuesto; mantenimiento preventivo semanal. \\
+			\midrule
+			Estadístico & Incumplimiento de supuestos de normalidad u homocedasticidad en los datos de índices espectrales, invalidando el uso de ANOVA. & Empleo de pruebas no paramétricas (Kruskal-Wallis + Dunn) como alternativa pre-especificada; transformación de datos (Box-Cox) si es necesario. \\
+			\midrule
+			Estadístico & Bajo poder estadístico ($1-\beta < 0.80$) debido a tamaño muestral insuficiente para detectar diferencias pequeñas entre grupos. & Tamaño muestral justificado de $n=75$ mediciones por grupo (15 plantas × 5 réplicas técnicas), calculado para detectar diferencias de magnitud moderada (efecto tamaño $d=0.5$) con $\alpha=0.05$. \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
+	\subsection{Plan de Contingencia ante Fracaso de la Hipótesis}
+	
+	En caso de que los resultados experimentales no permitan cumplir los criterios de éxito establecidos (diferencia estadísticamente significativa en al menos dos índices, CV intra-técnica $<10\%$, ventana pre-sintomática $\geq 3$ días), se contemplan las siguientes acciones:
+	
+	\begin{enumerate}
+		\item \textbf{Firma espectral no detectable:} Si las urediniosporas de \textit{H. vastatrix} no presentan una firma espectral diferencial distinguible en el rango 350--1000 nm (coeficiente de correlación entre colectas $r < 0.70$ o desplazamiento de bandas $> 15$ nm), se explorarán dos alternativas: (a) medición en rango extendido (1000--1700 nm) mediante espectrómetro InGaAs para detectar bandas de absorción de carbohidratos o lípidos de la pared esporal; (b) uso de fluorescencia inducida por UV (excitación a 365 nm) para detectar pigmentos fluorescentes del hongo.
+		
+		\item \textbf{Baja reproducibilidad técnica:} Si el coeficiente de variación intra-técnica supera el 15\% para los índices propuestos, se investigará la fuente de variabilidad mediante un experimento factorial anidado (día de medición, operador, posición foliar, planta). Si la variabilidad se atribuye a heterogeneidad espacial de la infección, se aumentará el número de posiciones medidas por hoja de 3 a 9 (muestreo sistemático). Si la variabilidad es instrumental, se evaluará la necesidad de un espectrómetro de mayor estabilidad (rango dinámico $>$ 2000:1).
+		
+		\item \textbf{Ventana pre-sintomática insuficiente ($< 3$ días):} Si la primera anomalía espectral ocurre menos de 3 días antes de la aparición de síntomas visibles, se reconsiderará la frecuencia de medición (de diaria a cada 12 horas) para capturar cambios más tempranos. Alternativamente, se explorarán índices basados en la segunda derivada del espectro o en análisis de componentes principales para extraer señales débiles enmascaradas por ruido.
+		
+		\item \textbf{Falla total de detección:} Si ningún índice logra discriminar estadísticamente entre hojas sanas y pre-sintomáticas (valor p $> 0.05$ para todas las comparaciones), se concluirá que la detección espectroscópica de \textit{H. vastatrix} en el rango 350--1000 nm no es factible bajo las condiciones experimentales ensayadas. Los resultados negativos se documentarán y publicarán como un hallazgo relevante para la comunidad científica, evitando así el sesgo de publicación hacia resultados positivos.
+	\end{enumerate}
+	
+	
+	% ============================================================
+	%  VIABILIDAD TÉCNICA Y FINANCIERA
+	% ============================================================
+	\section{Viabilidad Técnica y Financiera}
+	
+	\subsection{Viabilidad Técnica}
+	
+	La investigación es técnicamente viable por las siguientes razones:
+	
+	\begin{enumerate}
+		\item \textbf{Disponibilidad de equipos:} La Escuela de Física de la Universidad de El Salvador cuenta con el espectrómetro Ocean Optics USB4000 (350--1000 nm), la fuente halógena HL-2000, fibra óptica bifurcada y estándares de reflectancia (BaSO$_4$). El Laboratorio de Fitopatología de la Facultad de Ciencias Agronómicas dispone de microscopio Olympus CX23, centrífuga y cámara de Neubauer. No se requieren equipos adicionales de alta complejidad.
+		
+		\item \textbf{Disponibilidad de material biológico:} Las hojas de \textit{C. arabica} con esporulación activa de \textit{H. vastatrix} son colectables en los cafetales experimentales de la Facultad de Ciencias Agronómicas (FACIAES) durante el período epidemiológico (septiembre--noviembre). Las plantas de \textit{C. arabica} var. Caturra de 3--4 meses para el experimento de inoculación se obtendrán del vivero de la facultad.
+		
+		\item \textbf{Competencias del equipo investigador:} El investigador principal (Samuel De la O Jiménez) ha recibido formación en espectroscopía óptica y técnicas de procesamiento de señales. El Dr. Rafael Gómez Escoto, como asesor, aporta experiencia en fitopatología y en el manejo del patosistema \textit{Coffea-Hemileia}. Se contempla la colaboración de un técnico de laboratorio entrenado en microscopía y conteo de esporas.
+		
+		\item \textbf{Protocolos estandarizados:} El protocolo de aislamiento y purificación de urediniosporas mediante lavado diferencial y centrifugación ha sido validado en estudios previos \parencite{Silva2006}. El protocolo de medición espectroscópica (geometría de reflectancia difusa a 45°, tiempo de integración 300--800 ms, promediado de 10 espectros) sigue las recomendaciones de la Society for Applied Spectroscopy para muestras biológicas.
+		
+		\item \textbf{Software de análisis:} El procesamiento de espectros y el cálculo de índices se realizará con el software OceanView (adquisición) y scripts en Python con las librerías NumPy, SciPy, Pandas y Matplotlib (análisis y visualización). El análisis estadístico (ANOVA, Kruskal-Wallis, pruebas post-hoc) se ejecutará con el paquete \texttt{statsmodels} y \texttt{scipy.stats}, todos de acceso gratuito.
+	\end{enumerate}
+	
+	\subsection{Viabilidad Financiera}
+	
+	El estudio se ejecutará con un presupuesto estimado de \$1,850 USD, desglosado en la Tabla~\ref{tab:presupuesto}. El financiamiento provendrá de las siguientes fuentes:
+	
+	\begin{itemize}
+		\item \textbf{Universidad de El Salvador, Escuela de Física:} Aporta los equipos espectroscópicos, instalaciones del laboratorio y acceso al invernadero (valor institucional: \$850 USD, no facturado).
+		\item \textbf{Fondo de Investigación PIN1109:} Asigna \$1,000 USD para la compra de consumibles, material fungible y movilización.
+		\item \textbf{Contrapartida del investigador:} \$850 USD para la adquisición de reactivos especializados (Tween 80, PBS) y mantenimiento de equipos.
+	\end{itemize}
+	
+	El presupuesto se considera viable porque:
+	\begin{enumerate}
+		\item Los rubros de mayor costo (espectrómetro, fuente, microscopio) ya están disponibles institucionalmente, sin necesidad de compra o arrendamiento.
+		\item Los consumibles requeridos (cubetas de PMMA, puntas de pipeta, gasa estéril, portaobjetos) son de bajo costo y están disponibles en el mercado local.
+		\item No se requiere personal contratado externamente, ya que el investigador principal ejecutará todas las tareas técnicas con la supervisión del asesor.
+		\item El costo de movilización para la colecta de esporas (transporte al campo experimental) es mínimo (aproximadamente \$5 por día).
+	\end{enumerate}
+
+% ============================================================
+	%  PRESUPUESTO Y FINANCIAMIENTO
+	% ============================================================
+	\section{Presupuesto y Financiamiento}
+	
+	\subsection{Tabla de Presupuesto Detallado}
+	
+	\begin{table}
+		%\centering
+		\caption{Presupuesto estimado del proyecto de investigación}
+		\label{tab:presupuesto}
+		\begin{tabular}{p{0.3\linewidth}p{0.45\linewidth}p{0.1\linewidth}p{0.1\linewidth}}
+			\toprule
+			\textbf{Rubro} & \textbf{Descripción} & \textbf{Cantidad} & \textbf{Costo (USD)} \\
+			\midrule
+			\multicolumn{4}{c}{\textbf{1. Consumibles de laboratorio}} \\
+			\midrule
+			Cubetas de PMMA & Rango visible, camino óptico 10 mm, 4.5 mL & 10 und & 80.00 \\
+			Puntas de pipeta & Esterilizadas, 1--200 $\mu$L y 100--1000 $\mu$L & 2 cajas & 30.00 \\
+			Portaobjetos y cubreobjetos & Para microscopía óptica & 2 cajas & 25.00 \\
+			Gasa estéril & Malla de 100 $\mu$m y 40 $\mu$m & 2 rollos & 20.00 \\
+			Guantes de nitrilo & Talla M, estériles, caja de 100 pares & 1 caja & 15.00 \\
+			\midrule
+			\multicolumn{4}{c}{\textbf{2. Reactivos y soluciones}} \\
+			\midrule
+			Tween 80 & Surfactante para suspensión de esporas, 100 mL & 1 frasco & 35.00 \\
+			PBS (buffer fosfato) & Tabletas para 1 L de solución 0.01 M, pH 7.4 & 2 paquetes & 40.00 \\
+			NaCl & Cloruro de sodio, grado analítico, 500 g & 1 frasco & 15.00 \\
+			Agua destilada & 5 galones & 2 garrafas & 20.00 \\
+			\midrule
+			\multicolumn{4}{c}{\textbf{3. Material vegetal y biológico}} \\
+			\midrule
+			Plantas de \textit{C. arabica} & Var. Caturra, edad 3--4 meses & 50 und & 0 (vivero UES) \\
+			Macetas y sustrato & Maceta 8 (20 cm) + tierra negra + materia orgánica & 50 und & 120.00 \\
+			\midrule
+			\multicolumn{4}{c}{\textbf{4. Mantenimiento de equipos}} \\
+			\midrule
+			Calibración de espectrómetro & Verificación de longitud de onda y respuesta fotométrica & 1 servicio & 150.00 \\
+			Lámpara halógena de repuesto & HL-2000, 20 W & 1 und & 200.00 \\
+			\midrule
+			\multicolumn{4}{c}{\textbf{5. Movilización y logística}} \\
+			\midrule
+			Transporte para colectas & Campo experimental FACIAES (15 km ida/vuelta) & 6 viajes & 30.00 \\
+			Viáticos & Refrigerio para jornadas de medición prolongadas & 10 días & 70.00 \\
+			\midrule
+			\multicolumn{4}{c}{\textbf{6. Publicación y divulgación}} \\
+			\midrule
+			Procesamiento de datos & Impresión de protocolos, cuadernos de bitácora & 1 lote & 20.00 \\
+			Reproducción del protocolo & Copias del informe final (3 ejemplares) & 1 lote & 15.00 \\
+			\midrule
+			\multicolumn{3}{r}{\textbf{Total estimado}} & \textbf{\$1,850.00} \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
+	\subsection{Justificación de Rubros}
+	
+	\begin{itemize}
+		\item \textbf{Cubetas de PMMA:} Se seleccionan de PMMA (poli(metacrilato de metilo)) en lugar de cuarzo debido a su bajo costo y suficiente transmitancia en el rango 350--1000 nm (transmitancia $> 90\%$ en PMMA de grado óptico). Para longitudes de onda inferiores a 350 nm (no utilizadas en este estudio), el cuarzo sería indispensable.
+		
+		\item \textbf{Tween 80:} Es un surfactante no iónico esencial para romper la hidrofobicidad de las paredes esporales y lograr una suspensión homogénea. La concentración final será 0.05\% v/v, dentro del rango que no afecta la viabilidad de las esporas \parencite{Silva2006}.
+		
+		\item \textbf{PBS y NaCl:} El buffer PBS (0.01 M, pH 7.4) mantiene el pH fisiológico y la osmolaridad para preservar la integridad de las esporas durante el procesamiento. El NaCl al 0.9\% (solución salina) puede utilizarse como alternativa de menor costo.
+		
+		\item \textbf{Calibración del espectrómetro:} Se recomienda una verificación anual de la precisión en longitud de onda (estándar de lámpara de mercurio-argón) y de la linealidad fotométrica (filtros de densidad neutra certificados). Este servicio puede ser ejecutado por el fabricante (Ocean Optics) o por un laboratorio acreditado local.
+		
+		\item \textbf{Lámpara halógena de repuesto:} La HL-2000 tiene una vida útil nominal de 2000 horas. Dado que las mediciones requieren aproximadamente 100 horas de operación, se contempla una lámpara de repuesto por precaución ante fallo prematuro.
+	\end{itemize}
+\newpage	
+	\subsection{Financiamiento}
+	
+	El proyecto se financia mediante:
+	\begin{itemize}
+		\item \textbf{Fondo PIN1109 (Universidad de El Salvador):} \$1,000 USD asignados para consumibles, reactivos y movilización.
+		\item \textbf{Contrapartida del investigador:} \$850 USD provenientes de recursos personales, destinados a mantenimiento de equipos y publicación.
+		\item \textbf{Aporte institucional:} Uso de laboratorios, equipos (espectrómetro, fuente, microscopio) e invernadero, valorado en \$850 USD, aportado por la Escuela de Física y la Facultad de Ciencias Agronómicas.
+	\end{itemize}
+	
+	No se requiere financiamiento externo adicional, y el proyecto se ejecutará dentro de los 6 meses planificados).
+	
+	
+% ============================================================
+%  CRONOGRAMA DE ACTIVIDADES
+% ============================================================
+\section{Cronograma de Actividades}
+
+El proyecto se ejecutará en un período de 6 meses (24 semanas), distribuidas en 6 fases secuenciales. E el cronograma se presenta en la Tabla~\ref{tab:cronograma}.
+
+\subsection{Tabla de Cronograma}
+\begin{table}
+	%\centering
+	\caption{Cronograma de actividades por mes}
+	\label{tab:cronograma}
+	\begin{tabular}{p{0.45\linewidth} c c c c c c}
+		\toprule
+		\textbf{Actividad / Fase} & \textbf{Mes 1} & \textbf{Mes 2} & \textbf{Mes 3} & \textbf{Mes 4} & \textbf{Mes 5} & \textbf{Mes 6} \\
+		\midrule
+		\textbf{Fase 1: Preparación} & & & & & & \\
+		\quad Revisión bibliográfica final & X & & & & & \\
+		\quad Adquisición de consumibles & X & & & & & \\
+		\quad Acondicionamiento de invernadero & X & X & & & & \\
+		\quad Obtención de plantas (50 und) & X & & & & & \\
+		\midrule
+		\textbf{Fase 2: Colecta y caracterización de esporas} & & & & & & \\
+		\quad Colecta de esporas (lote 1) & & X & & & & \\
+		\quad Purificación y viabilidad (lote 1) & & X & & & & \\
+		\quad Mediciones espectrales en suspensión & & X & X & & & \\
+		\quad Colecta de esporas (lote 2) & & & X & & & \\
+		\quad Reproducibilidad entre lotes & & & X & & & \\
+		\midrule
+		\textbf{Fase 3: Inoculación y seguimiento temporal} & & & & & & \\
+		\quad Inoculación de plantas (día 0) & & & X & & & \\
+		\quad Mediciones diarias (días 1--21) & & & X & X & & \\
+		\quad Registro de síntomas visuales & & & X & X & & \\
+		\quad Muestreo para microscopía & & & & X & & \\
+		\midrule
+		\textbf{Fase 4: Procesamiento de datos} & & & & & & \\
+		\quad Cálculo de índices espectrales & & & & X & X & \\
+		\quad Pruebas estadísticas (ANOVA, Kruskal-Wallis) & & & & & X & \\
+		\quad Identificación de umbrales y ventana temporal & & & & & X & \\
+		\midrule
+		\textbf{Fase 5: Validación} & & & & & & \\
+		\quad Correlación espectro-histológica & & & & & X & \\
+		\quad Verificación de reproducibilidad inter-lote & & & & & X & \\
+		\quad Análisis de sensibilidad de índices & & & & & & X \\
+		\midrule
+		\textbf{Fase 6: Comunicación} & & & & & & \\
+		\quad Redacción de informe final & & & & & & X \\
+		\quad Elaboración de artículo científico & & & & & & X \\
+		\quad Preparación de presentación (defensa) & & & & & & X \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
+
+\newpage
+\subsection{Resumen de resultados esperados}
+\begin{itemize}
+	\item \textbf{Fin del Mes 1:} Protocolo final aprobado, consumibles adquiridos, plantas aclimatadas en invernadero (50 unidades).
+	\item \textbf{Fin del Mes 2:} Primer lote de esporas caracterizado espectralmente; firma espectral preliminar obtenida.
+	\item \textbf{Fin del Mes 3:} Inoculación completada (día 0); mediciones diarias en curso (días 1--21); segundo lote de esporas procesado.
+	\item \textbf{Fin del Mes 4:} Finalización del seguimiento temporal (día 21); conjunto completo de datos espectrales crudos.
+	\item \textbf{Fin del Mes 5:} Cálculo de índices espectrales; pruebas estadísticas completadas; ventana de detección pre-sintomática identificada.
+	\item \textbf{Fin del Mes 6:} Informe final entregado; artículo científico enviado a revista indexada; defensa del proyecto realizada.
+\end{itemize}
+	
+	% ============================================================
+	%  REFERENCIAS
+	% ============================================================
+
+	\printbibliography[title={Referencias}]
+	
+\end{document}
