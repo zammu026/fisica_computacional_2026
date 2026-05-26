@@ -63,10 +63,10 @@ dx = L / (nx - 1)  # paso
 
 # parametros fisicos
 rho0 = 0.01 # densidad 
-T0 = 40.0 # 
-alpha = 0.5 #
-kappa = 1.0 #
-g = 9.8  
+T0 = 40.0 # tension 
+alpha = 0.5 # coeficiente de expansión
+kappa = 1.0 # coeficiente de fricción
+g = 9.8  # gravedad
 
 x = np.linspace(0, L, nx) # malla espacial
 

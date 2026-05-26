@@ -22,7 +22,7 @@ for i in range(N):
         u[i, j] = np.sin(2 * np.pi * x) * np.sin(2 * np.pi * y)
 u_prev = u.copy()
 
-# evolucion temporal
+# evolucion temporal metodo de leapfrog
 for step in range(200):
     for i in range(1, N-1): # por que crea una matriz 1,N-1 y no 1,N
         for j in range(1, N-1):
@@ -30,7 +30,7 @@ for step in range(200):
     u_prev = u.copy()
     u = u_next.copy()
 
-# visualizacion
+# visualizacion, crea una malla 2D
 X, Y = np.meshgrid(range(N), range(N))
 
 plt.imshow(u, cmap = 'viridis')
