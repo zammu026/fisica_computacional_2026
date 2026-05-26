@@ -39,21 +39,20 @@ CONSIDERACIONES IMPORTANTES
   velocidad numérica artificial que deforma la simetría de la onda reflejada.
 ================================================================================
 """
-
-# Metodo de leapfrog
+# Solucion de la ecuacion de onda por el metodo leapfrog
 import numpy as np
 import matplotlib.pyplot as plt
 
 # parametros fisicos
-L = 1.0
-c = 1.0
+L = 1.0 # longitud
+c = 1.0 # velocidad
 
 # discretizacion
-Nx = 100
-dx = L / (Nx - 1)
+Nx = 100 # cantidad de puntos en la malla
+dx = L / (Nx - 1) # paso espacial en la malla, delta x
 
-dt = 0.005 # ajustar para cumplir Courant
-Nt = 300
+dt = 0.005 # ajustar para cumplir Courant delta t
+Nt = 300 # cantidad de pasos temporales
 print((dt*c/dx)**2) # condicion de Courant
 
 # estabilidad
@@ -74,8 +73,8 @@ y[0, :] = np.exp(-100 * (x - 0.5)**2)
 for i in range(1, Nx - 1):
     y[1, i] = y[0, i] + 0.5 * (courant**2) * (y[0, i + 1] + y[0, i - 1] - 2*y[0, i])
 
-# condiciones de frontera para el paso inicial
-y[0, 0] = y[0, -1] = 0
+# condiciones de frontera para el paso inicial, necesitas los vecinos izquierdo (i - 1) y derecho (i + 1) para calcular el cambio
+y[0, 0] = y[0, -1] = 0 
 y[1, 0] = y[1, -1] = 0
 
 # evolucion temporal (leapfrog)
@@ -83,7 +82,7 @@ for  j in range(1, Nt -1):
     for i in range(1, Nx -1):
         y[j + 1, i] = (2*y[j, i] - y[j - 1, i] + (courant**2) * (y[j, i + 1] + y[j, i - 1]- 2*y[j, i] ))
     
-    # condiciones de frontera
+    # condiciones de frontera o contorno
     y[j + 1, 0] = 0
     y[j + 1, - 1] = 0
 

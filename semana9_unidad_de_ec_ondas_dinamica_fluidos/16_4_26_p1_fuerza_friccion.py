@@ -48,11 +48,12 @@ from matplotlib.animation import FuncAnimation
 
 L = 1.0
 c = 1.0
+
 Nx = 200
 dx = L / (Nx - 1)
 
-dt = 0.004
 Nt = 800
+dt = 0.004
 
 gamma = 1.0 # friccion
 
@@ -65,7 +66,8 @@ y[0, :] = y[1, :]
 r = (c * dt / dx)**2
 
 for j in range(1, Nt-1):
-    # Corregido: Implementación de la ecuación de onda amortiguada con esquema numérico centrado estable
+    # Corregido: Implementación de la ecuación de onda amortiguada
+    # con esquema numérico centrado estable
     denominador = 1.0 + 0.5 * gamma * dt
     termino_central = 2.0 * y[j, 1:-1]
     termino_pasado = (1.0 - 0.5 * gamma * dt) * y[j-1, 1:-1]
