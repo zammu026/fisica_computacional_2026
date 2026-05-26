@@ -10,6 +10,7 @@ V0= 1.0
 u= np.zeros((Nx+1,Ny+1))
 w= np.zeros((Nx+1,Ny+1))
 
+# condiciones de frontera
 def boundary():
     # Inicializacion
     for i in range(Nx+1):

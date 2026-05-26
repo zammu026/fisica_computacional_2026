@@ -8,7 +8,7 @@ dx =  1.0 / N
 dt = 0.001
 c = 1.0
 
-r = (c * dt/dx) ** 2
+r = (c * dt/dx) ** 2 # coeficiente de difusion
 
 # condicion de estabilidad 
 if r > 0.5:

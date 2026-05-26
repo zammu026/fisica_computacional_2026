@@ -48,17 +48,19 @@ import matplotlib.pyplot as plt
 Nx = 70
 Ny = 24
 
-L_beam = 8
-H_beam = 4
+L_beam = 8 # longitud de la viga
+H_beam = 4 # altura de la viga
 
 v0 = 1.0
 R = 0.1
 
 omega = 0.3
 
+# parametros de convergencia
 max_iter = 5000
 tol = 1e-3
 
+# matrices
 u = np.zeros((Nx, Ny))
 w = np.zeros((Nx, Ny))
 
@@ -88,6 +90,7 @@ def boundary_conditions(): # funciones de rutina
     u[x0:x1, y0:y1] = u[x0, y0]
     w[x0:x1, y0:y1] = 0.0 
 
+# Algoritmo SOR
 def relax():
     max_residual = 0
     for i in range(1, Nx-1):
@@ -189,3 +192,5 @@ plt.title('Distribución de las Líneas de Corriente')
 plt.xlabel('x')
 plt.ylabel('y')
 plt.show()
+
+
