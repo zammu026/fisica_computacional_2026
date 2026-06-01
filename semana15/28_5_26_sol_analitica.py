@@ -1,6 +1,6 @@
 '''
 =====================================================================
-ENUNCIADO DEL PROBLEMA Y CONTEXTO FÍSICO-MATEMÁTICO
+ENUNCIADO DEL PROBLEMA
 =====================================================================
 El presente código aborda el cálculo y la simulación del potencial 
 eléctrico Phi(z) generado por una distribución de carga en forma de 

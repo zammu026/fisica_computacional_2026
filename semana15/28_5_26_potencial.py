@@ -1,6 +1,6 @@
 '''
 =====================================================================
-ENUNCIADO DEL PROBLEMA Y CONTEXTO FÍSICO-MATEMÁTICO
+ENUNCIADO 
 =====================================================================
 El presente código aborda la simulación numérica del potencial 
 eléctrico V(x,y) y el campo eléctrico E(x,y) en una región bidimensional 
@@ -11,7 +11,6 @@ campo eléctrico externo originalmente uniforme E0 orientado en el eje x.
 La solución numérica requiere resolver la ecuación de Laplace generalizada 
 para medios no homogéneos, dada por Nabla * (eps * Nabla V) = 0.
 
-OBJETIVOS Y REQUERIMIENTOS:
 1. Implementar el método de relajación (Jacobi/Gauss-Seidel) para 
    encontrar la distribución estacionaria del potencial V.
 2. Incorporar las condiciones de continuidad en la frontera dieléctrica 
@@ -24,7 +23,7 @@ OBJETIVOS Y REQUERIMIENTOS:
     de campo eléctrico (streamplot), identificando la distorsión geométrica 
    provocada por la polarización del cilindro.
 
-CONSIDERACIONES Y REGLAS DE NEGOCIO:
+CONSIDERACIONES
 - El dominio espacial está discretizado en una malla Nx x Ny de -1 a 1.
 - El cilindro se modela mediante una máscara booleana ('inside') basada 
   en la ecuación analítica del círculo.
