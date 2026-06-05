@@ -1,3 +1,17 @@
+'''
+Bound states
+Realizar una tecnica de prueba y error para resolver
+una ecuacion trascendental para determinar las energias
+de una particula ligada dentro  de un pozo cuadrado 1D 
+de radio R:
+V(x) = - V0 for |x| <= R; V(x) = 0 for |x| > R
+Las raices de un estado ligado E = - Eb < 0 dentro de
+este pozo son soluciones de las ecuaciones transcendentales:
+
+sqrt(V0 - Eb) tan(sqrt(V0 - Eb)) = sqrt(Eb) (even - PAR)
+sqrt(V0 - Eb) (1/tan(sqrt(V0 - Eb))) = sqrt(Eb) (odd - IMPAR)
+'''
+
 # metodo biseccion para estados ligados
 import numpy as np
 import matplotlib.pyplot as plt
