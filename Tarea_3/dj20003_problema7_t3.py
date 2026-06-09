@@ -18,7 +18,7 @@ CFL = 0.45
 k = 2*np.pi/(xf-x0)   # número de onda fundamental del dominio
 
 def prim2cons(rho, p, v):
-    """Convierte (rho, p, v) → U = [rho, rho*v, E]."""
+    """Convierte (rho, p, v) -> U = [rho, rho*v, E]."""
     E = rho*(p/((gamma-1)*rho) + 0.5*v**2)
     return np.array([rho, rho*v, E])
 

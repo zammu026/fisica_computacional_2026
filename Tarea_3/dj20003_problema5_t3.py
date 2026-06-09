@@ -15,7 +15,7 @@ CFL = 0.45
 t_fin = 1.0   # tiempo al que se mide el error
 
 def prim2cons(rho, p, v):
-    """Convierte (rho, p, v) → U = [rho, rho*v, E]."""
+    """Convierte (rho, p, v) -> U = [rho, rho*v, E]."""
     E = rho*(p/((gamma-1)*rho) + 0.5*v**2)
     return np.array([rho, rho*v, E])
 
@@ -63,7 +63,7 @@ for N in N_vals:
     print(f"N={N:4d}  dx={dx:.5f}  L2={L2:.4e}")
 
 # Ajuste lineal en log-log: pendiente = orden de convergencia
-# Si L2 ∝ dx^p, entonces log(L2) = p*log(dx) + cte
+# Si L2 proporcional a dx^p, entonces log(L2) = p*log(dx) + cte
 orden, b = np.polyfit(np.log10(dx_vals), np.log10(L2_vals), 1)
 print(f"\nOrden de convergencia empírico = {orden:.3f}")
 

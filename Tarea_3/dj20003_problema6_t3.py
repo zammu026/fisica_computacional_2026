@@ -19,7 +19,7 @@ x  = x0 + (np.arange(N)+0.5)*dx   # centros de celda
 t_fin = 1.0
 
 def prim2cons(rho, p, v):
-    """Convierte (rho, p, v) → U = [rho, rho*v, E]."""
+    """Convierte (rho, p, v) -> U = [rho, rho*v, E]."""
     E = rho*(p/((gamma-1)*rho) + 0.5*v**2)
     return np.array([rho, rho*v, E])
 

@@ -1,6 +1,5 @@
 """
 Práctica Numérica 3 - Ejercicio 1: Ondas Sonoras
-Universidad de El Salvador - Física Computacional 2026
 
 Resuelve las ecuaciones de Euler 1D con el esquema de Lax-Friedrichs.
 Condición inicial: perturbación acústica pequeña (A = 2.1e-4).
@@ -11,12 +10,12 @@ con la solución analítica de onda sonora lineal.
 import numpy as np
 import matplotlib.pyplot as plt
 
-# PARÁMETROS FÍSICOS
-gamma = 5.0 / 3.0          # índice adiabático (gas monoatómico ideal)
-rho0  = 1.0                # densidad de fondo (estado base)
-p0    = 1.0                # presión de fondo (estado base)
-v0    = 0.0                # velocidad de fondo (medio en reposo)
-A     = 2.1e-4             # amplitud de la perturbación (régimen lineal)
+# PARÁMETROS
+gamma = 5.0 / 3.0          # índice adiabático
+rho0  = 1.0                # densidad de fondo 
+p0    = 1.0                # presión de fondo 
+v0    = 0.0                # velocidad de fondo 
+A     = 2.1e-4             # amplitud de la perturbación 
 
 cs0 = np.sqrt(gamma * p0 / rho0)   # velocidad del sonido de fondo (ec. 11 con estado base)
 print(f"Velocidad del sonido cs0 = {cs0:.6f}")
@@ -123,7 +122,7 @@ while t < t_end and output_idx < len(t_out):
         resultados[t_out[output_idx]] = cons2prim(U)
         output_idx += 1
 
-# DETERMINACIÓN NUMÉRICA DE LA VELOCIDAD: seguimos el pico de densidad
+# DETERMINACIÓN NUMÉRICA DE LA VELOCIDAD
 # El pico se desplaza una distancia Δx en Δt = 1.0, dando v = Δx/Δt
 i0 = np.argmax(resultados[0.0][0] - rho0)   # índice del pico en t=0
 i1 = np.argmax(resultados[1.0][0] - rho0)   # índice del pico en t=1

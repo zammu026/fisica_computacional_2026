@@ -45,8 +45,8 @@ def lax(U, dt):
 
 def simular(signo_v, t_end=1.5):
     """Simula la onda con la dirección controlada por signo_v.
-    signo_v = +1 → onda viaja en +x (invariante R+: δv = +cs δρ/ρ₀)
-    signo_v = -1 → onda viaja en -x (invariante R-: δv = -cs δρ/ρ₀)
+    signo_v = +1 -> onda viaja en +x (invariante R+: δv = +cs δρ/ρ₀)
+    signo_v = -1 -> onda viaja en -x (invariante R-: δv = -cs δρ/ρ₀)
     El signo de la perturbación de velocidad es lo que determina la dirección."""
     w = np.cos(2*np.pi*(x-x0)/(xf-x0) + 5*np.pi/8)
     U = prim2cons(rho0+A*rho0*w, p0+A*gamma*p0*w, v0+signo_v*A*cs0*w)
