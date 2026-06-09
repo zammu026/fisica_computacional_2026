@@ -170,7 +170,7 @@ Nsteps = 501
 h = 0.04
 Nmax = 100
 
-E = -17
+E = - 25
 Emax = 1.1 * E
 Emin = E / 1.1
 
