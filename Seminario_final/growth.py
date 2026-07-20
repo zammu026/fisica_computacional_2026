@@ -85,7 +85,82 @@ def protein_fold(length=30, max_tries=3000):
 
     return best, best_e
 
+# ══════════════════════════════════════════════════════════════
+# 8.4.2  Plant Growth Simulations — IFS genérico
+# ══════════════════════════════════════════════════════════════
 
+def ifs_plant(transformations, n=50000):
+    """
+    IFS genérico para simulaciones de crecimiento vegetal.
+
+    Aplica repetidamente transformaciones afines que combinan
+    escalado (8.24), traslación (8.25) y rotación (8.26):
+
+        Escalado:     (x', y') = (sx·x, sy·y)
+        Traslación:   (x', y') = (x + ax, y + ay)
+        Rotación:     x' = x·cos θ − y·sin θ
+                      y' = x·sin θ + y·cos θ
+
+    Parámetros
+    ----------
+    transformations : list of (prob, func)
+        Cada elemento es (probabilidad, función(x,y) -> (x',y')).
+        Las probabilidades deben sumar 1.
+    n : int
+        Número de iteraciones.
+
+    Retorna
+    -------
+    xs, ys : list  Coordenadas del atractor IFS.
+    """
+    cumprob = np.cumsum([t[0] for t in transformations])
+    x, y = 0.0, 0.0
+    xs, ys = [], []
+
+    for _ in range(n):
+        r = random.random()
+        for i, cp in enumerate(cumprob):
+            if r < cp:
+                x, y = transformations[i][1](x, y)
+                break
+        xs.append(x)
+        ys.append(y)
+
+    return xs, ys
+
+
+if __name__ == "__main__":
+    # ...
+    # ── 8.4.2  Plant Growth IFS ───────────────────────────────
+    print("8.4.2  Generando planta con IFS genérico...")
+
+    # Ejemplo: transformaciones con escalado + traslación + rotación
+    theta = np.pi / 6  # 30 grados
+    c, s = np.cos(theta), np.sin(theta)
+
+    plant_transforms = [
+        (0.10, lambda x, y: (0.05 * x, 0.50 * y)),                      # escalado (tallo)
+        (0.20, lambda x, y: (0.46 * x - 0.15 * y,                       # escalado + rotación
+                              0.39 * x + 0.38 * y + 0.6)),
+        (0.20, lambda x, y: (0.47 * x - 0.15 * y,                       # escalado + rotación
+                              0.17 * x + 0.42 * y + 1.1)),
+        (0.25, lambda x, y: ( x * c - y * s + 0.3,                      # rotación + traslación
+                               x * s + y * c + 0.5)),
+        (0.25, lambda x, y: ( x * c + y * s - 0.3,                      # rotación + traslación
+                              -x * s + y * c + 0.5)),
+    ]
+
+    xs_pg, ys_pg = ifs_plant(plant_transforms, n=50000)
+
+    fig, ax = plt.subplots(figsize=(4, 6), facecolor='#0a1a0a')
+    ax.set_facecolor('#0a1a0a')
+    ax.scatter(xs_pg, ys_pg, s=0.05, c='#99dd55', alpha=0.7, linewidths=0)
+    ax.axis('off')
+    ax.set_title('Plant Growth IFS\n(50 000 iteraciones)', color='white', fontsize=11)
+    plt.tight_layout()
+    plt.savefig('plant_growth.png', dpi=150, bbox_inches='tight', facecolor='#0a1a0a')
+    plt.show()
+    
 # ══════════════════════════════════════════════════════════════
 # 8.4.3  Barnsley's Fern  (ecuación 8.29)
 # ══════════════════════════════════════════════════════════════

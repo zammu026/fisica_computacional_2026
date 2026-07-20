@@ -25,7 +25,7 @@ tolerance = 1e-4
 max_iterations = 10000
 
 V = np.zeros((N, N))
-mask = np.zeros((N, N))
+mask = np.zeros((N, N)) # la mask sirve
 
 # placas
 # placa superior de +100 V
